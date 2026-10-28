@@ -1,0 +1,221 @@
+{
+  "slides": [
+    {
+      "slide": 2,
+      "title": "Agenda",
+      "content": [
+        { "text": "Industry Trends", "level": 0 },
+        { "text": "Services Review", "level": 0 },
+        { "text": "Open Technical Items", "level": 0 },
+        { "text": "Strategic Initiatives", "level": 0 },
+        { "text": "Implementation Timeline", "level": 0 },
+        { "text": "Budget Summary", "level": 1 },
+        { "text": "Reports", "level": 0 },
+        { "text": "Management Summary Report of Technical Infrastructure", "level": 1 },
+        { "text": "Completed Ticket Performance by Issue Type", "level": 1 },
+        { "text": "Other applicable reports", "level": 1 }
+      ]
+    },
+    {
+      "slide": 3,
+      "title": "Industry Trends",
+      "content": [
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" }
+      ]
+    },
+    {
+      "slide": 4,
+      "title": "Service Review",
+      "content": ""
+    },
+    {
+      "slide": 5,
+      "title": "Current Management and Maintenance",
+      "content": [
+        { "label": "Workstations and Laptops", "detail": "" },
+        { "label": "Physical Servers", "detail": "" },
+        { "label": "Virtual Servers", "detail": "" },
+        { "label": "Locations", "detail": "" },
+        { "label": "Users", "detail": "" },
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" }
+      ]
+    },
+    {
+      "slide": 6,
+      "title": "Customer Success Dashboard",
+      "content": [
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" }
+      ]
+    },
+    {
+      "slide": 7,
+      "title": "Management Summary Report Key Takeaways",
+      "tables": {
+        "management_summary_takeaways": [
+          { "number": "1", "label": "", "detail": "" },
+          { "number": "2", "label": "", "detail": "" },
+          { "number": "3", "label": "", "detail": "" }
+        ]
+      }
+    },
+    {
+      "slide": 8,
+      "title": "Recent Accomplishments",
+      "content": [
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" }
+      ]
+    },
+    {
+      "slide": 9,
+      "title": "CX Metrics",
+      "content": [
+        { "text": "What we're hearing from your team:" },
+        { "text": "Net Promoter Score (NPS): " },
+        { "text": "Loyalty Score: " }
+      ]
+    },
+    {
+      "slide": 10,
+      "title": "Open Technical Items",
+      "content": ""
+    },
+    {
+      "slide": 11,
+      "title": "Current Project Review",
+      "content": [
+        { "text": "", "status": "" },
+        { "text": "", "status": "" },
+        { "text": "", "status": "" },
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" }
+      ]
+    },
+    {
+      "slide": 12,
+      "title": "Devices Under Management Recommended for Upgrade",
+      "tables": {
+        "devices_for_upgrade": [
+          { "device_name": "", "os_version": "", "reason_for_upgrade": "", "age": ""},
+          { "device_name": "", "os_version": "", "reason_for_upgrade": "", "age": "" },
+          { "device_name": "", "os_version": "", "reason_for_upgrade": "", "age": ""}
+        ]
+      }
+    },
+    {
+      "slide": 13,
+      "title": "Devices Under Management Recommended for Replacement",
+      "tables": {
+        "devices_for_replacement": [
+          { "device_name": "", "os_version": "", "reason_for_replacement": "", "age": ""},
+          { "device_name": "", "os_version": "", "reason_for_replacement": "", "age": "" },
+          { "device_name": "", "os_version": "", "reason_for_replacement": "", "age": "" }
+        ]
+      }
+    },
+    {
+      "slide": 14,
+      "title": "Cybersecurity",
+      "content": [
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" }
+      ]
+    },
+    {
+      "slide": 15,
+      "title": "Backup / Business Continuity",
+      "content": [
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" }
+      ]
+    },
+    {
+      "slide": 16,
+      "title": "Strategic Initiatives",
+      "content": ""
+    },
+    {
+      "slide": 17,
+      "title": "Scheduled Projects",
+      "content": [
+        { "text": "", "timeline": "" },
+        { "text": "", "timeline": "" },
+        { "text": "", "timeline": "" },
+        { "text": "", "timeline": "" },
+        { "label": "Project Execution Approach", "detail": "" }
+      ]
+    },
+    {
+      "slide": 18,
+      "title": "Recommended Services",
+      "content": [
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" }
+      ]
+    },
+    {
+      "slide": 19,
+      "title": "Near-Term Priorities",
+      "content": [
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" }
+      ]
+    },
+    {
+      "slide": 20,
+      "title": "AI Essentials",
+      "content": [
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" }
+      ]
+    },
+    {
+      "slide": 21,
+      "title": "Implementation Timeline",
+      "content": [
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" },
+        { "label": "", "detail": "" }
+      ]
+    },
+    {
+      "slide": 22,
+      "title": "Budget and Timeline",
+      "tables": {
+        "budget_timeline": [
+          { "recommendation": "", "budget": "", "timeline": "" },
+          { "recommendation": "", "budget": "", "timeline": "" },
+          { "recommendation": "", "budget": "", "timeline": "" },
+          { "recommendation": "", "budget": "", "timeline": "" }
+        ]
+      }
+    },
+    {
+      "slide": 23,
+      "title": "Thank you for our continued partnership!",
+      "content": ""
+    }
+  ]
+}

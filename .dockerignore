@@ -1,0 +1,11 @@
+# Don't send these to Docker during build
+node_modules/
+.venv/
+local/
+.env
+*.log
+__pycache__/
+*.pyc
+.idea/
+.vscode/
+ngrok/

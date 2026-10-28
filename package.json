@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "dom-to-pptx": "^1.1.4",
+    "pdf-poppler": "^0.2.3",
+    "pptxgenjs": "^4.0.1",
+    "puppeteer": "^24.35.0"
+  },
+  "scripts": {
+    "postinstall": "node node_modules/puppeteer/install.mjs"
+  }
+}

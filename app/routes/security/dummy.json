@@ -1,0 +1,2931 @@
+{
+    "organization": {
+        "id": "PLACEHOLDER",
+        "name": "PLACEHOLDER",
+        "report_date": "2025-10-09T19:05:15.407535",
+        "created_by": "Security Reporting System",
+        "company": "Innovate Tech Partners",
+        "reporting_period": "October 2025"
+    },
+    "NinjaOne": {
+        "charts": {
+            "patch_management_enablement": {
+                "enabled": 35,
+                "disabled": 3
+            },
+            "patch_status_distribution": {
+                "installed": 201,
+                "approved": 36,
+                "failed": 2,
+                "pending": 5
+            },
+            "patch_management": {
+                "os_patches": {
+                    "summary": {
+                        "total": 651,
+                        "successful": 651,
+                        "failed": 0,
+                        "success_rate": 100.0
+                    },
+                    "failed_devices": []
+                },
+                "third_party_patches": {
+                    "summary": {
+                        "total": 360,
+                        "successful": 360,
+                        "failed": 0,
+                        "success_rate": 100.0
+                    },
+                    "failed_devices": []
+                }
+            },
+            "devices_with_failed_patches": {
+                "count": 0,
+                "devices": [],
+                "message": "No devices with failed patches"
+            }
+        },
+        "tables": {
+            "device_inventory": [
+                {
+                    "device": "CR036",
+                    "lastLoggedInUser": "emily",
+                    "manufacturer": "Dell Inc.",
+                    "model": "Latitude 5520",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "31.7GB",
+                    "cpu": "11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz",
+                    "total_storage": "474.1GB",
+                    "free_storage": "315.9GB",
+                    "age": 2.2,
+                    "age_category": "<4 years",
+                    "location": "SOLA"
+                },
+                {
+                    "device": "CR038",
+                    "lastLoggedInUser": "john",
+                    "manufacturer": "Dell Inc.",
+                    "model": "Latitude 5320",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "15.8GB",
+                    "cpu": "11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz",
+                    "total_storage": "235.8GB",
+                    "free_storage": "35.7GB",
+                    "age": 2.2,
+                    "age_category": "<4 years",
+                    "location": "Capetown"
+                },
+                {
+                    "device": "CR106",
+                    "lastLoggedInUser": "jane",
+                    "manufacturer": "Alienware",
+                    "model": "Alienware x17 R2",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "31.7GB",
+                    "cpu": "12th Gen Intel(R) Core(TM) i9-12900HK",
+                    "total_storage": "1905.7GB",
+                    "free_storage": "967.1GB",
+                    "age": 1.5,
+                    "age_category": "<4 years",
+                    "location": "Texas"
+                },
+                {
+                    "device": "CR76976",
+                    "lastLoggedInUser": "alen",
+                    "manufacturer": "Dell Inc.",
+                    "model": "Latitude 3550",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "31.7GB",
+                    "cpu": "13th Gen Intel(R) Core(TM) i7-1355U",
+                    "total_storage": "473.8GB",
+                    "free_storage": "320.0GB",
+                    "age": 1.3,
+                    "age_category": "<4 years",
+                    "location": "Capetown"
+                },
+                {
+                    "device": "CR201",
+                    "lastLoggedInUser": "michael",
+                    "manufacturer": "HP",
+                    "model": "EliteBook 850 G8",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "15.8GB",
+                    "cpu": "Intel Core i5-1145G7",
+                    "total_storage": "512GB",
+                    "free_storage": "210GB",
+                    "age": 3.1,
+                    "age_category": "<4 years",
+                    "location": "New York"
+                },
+                {
+                    "device": "CR202",
+                    "lastLoggedInUser": "sophia",
+                    "manufacturer": "Lenovo",
+                    "model": "ThinkPad X1 Carbon Gen 9",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "31.7GB",
+                    "cpu": "Intel Core i7-1185G7",
+                    "total_storage": "1TB",
+                    "free_storage": "640GB",
+                    "age": 2.7,
+                    "age_category": "<4 years",
+                    "location": "Berlin"
+                },
+                {
+                    "device": "CR203",
+                    "lastLoggedInUser": "daniel",
+                    "manufacturer": "Apple",
+                    "model": "MacBook Pro 14 M1",
+                    "os": "macOS Ventura",
+                    "ram": "16GB",
+                    "cpu": "Apple M1 Pro",
+                    "total_storage": "512GB",
+                    "free_storage": "289GB",
+                    "age": 6.5,
+                    "age_category": "<4 years",
+                    "location": "California"
+                },
+                {
+                    "device": "CR204",
+                    "lastLoggedInUser": "amy",
+                    "manufacturer": "Dell Inc.",
+                    "model": "XPS 13 9310",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "15.8GB",
+                    "cpu": "Intel Core i7-1165G7",
+                    "total_storage": "512GB",
+                    "free_storage": "310GB",
+                    "age": 2,
+                    "age_category": "<4 years",
+                    "location": "Capetown"
+                },
+                {
+                    "device": "CR205",
+                    "lastLoggedInUser": "harry",
+                    "manufacturer": "Asus",
+                    "model": "ZenBook UX425",
+                    "os": "Windows 11 Home",
+                    "ram": "8GB",
+                    "cpu": "Intel Core i5-1135G7",
+                    "total_storage": "256GB",
+                    "free_storage": "80GB",
+                    "age": 3.4,
+                    "age_category": "<4 years",
+                    "location": "London"
+                },
+                {
+                    "device": "CR206",
+                    "lastLoggedInUser": "kelly",
+                    "manufacturer": "Lenovo",
+                    "model": "ThinkPad T14 Gen 3",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "31.7GB",
+                    "cpu": "Intel Core i7-1260P",
+                    "total_storage": "512GB",
+                    "free_storage": "400GB",
+                    "age": 0.9,
+                    "age_category": "<4 years",
+                    "location": "Texas"
+                },
+                {
+                    "device": "CR207",
+                    "lastLoggedInUser": "leon",
+                    "manufacturer": "Dell Inc.",
+                    "model": "Latitude 5540",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "31.7GB",
+                    "cpu": "Intel Core i7-1355U",
+                    "total_storage": "1TB",
+                    "free_storage": "785GB",
+                    "age": 0.7,
+                    "age_category": "<4 years",
+                    "location": "SOLA"
+                },
+                {
+                    "device": "CR208",
+                    "lastLoggedInUser": "peter",
+                    "manufacturer": "HP",
+                    "model": "ProBook 650 G8",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "8GB",
+                    "cpu": "Intel Core i5-1135G7",
+                    "total_storage": "256GB",
+                    "free_storage": "120GB",
+                    "age": 3,
+                    "age_category": "<4 years",
+                    "location": "Mumbai"
+                },
+                {
+                    "device": "CR209",
+                    "lastLoggedInUser": "ella",
+                    "manufacturer": "Dell Inc.",
+                    "model": "Latitude 7430",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "31.7GB",
+                    "cpu": "Intel Core i7-1265U",
+                    "total_storage": "512GB",
+                    "free_storage": "270GB",
+                    "age": 1.6,
+                    "age_category": "<4 years",
+                    "location": "Berlin"
+                },
+                {
+                    "device": "CR210",
+                    "lastLoggedInUser": "steve",
+                    "manufacturer": "Apple",
+                    "model": "MacBook Air M2",
+                    "os": "macOS Sonoma",
+                    "ram": "16GB",
+                    "cpu": "Apple M2",
+                    "total_storage": "512GB",
+                    "free_storage": "390GB",
+                    "age": 1.0,
+                    "age_category": "<4 years",
+                    "location": "London"
+                },
+                {
+                    "device": "CR211",
+                    "lastLoggedInUser": "bruce",
+                    "manufacturer": "HP",
+                    "model": "EliteBook 840 G7",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "8GB",
+                    "cpu": "Intel Core i5-10210U",
+                    "total_storage": "256GB",
+                    "free_storage": "90GB",
+                    "age": 3.8,
+                    "age_category": "<4 years",
+                    "location": "Canada"
+                },
+                {
+                    "device": "CR212",
+                    "lastLoggedInUser": "tony",
+                    "manufacturer": "Dell Inc.",
+                    "model": "Precision 5570",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "64GB",
+                    "cpu": "Intel Core i9-12900H",
+                    "total_storage": "2TB",
+                    "free_storage": "1.4TB",
+                    "age": 1.3,
+                    "age_category": "<4 years",
+                    "location": "Texas"
+                },
+                {
+                    "device": "CR213",
+                    "lastLoggedInUser": "nina",
+                    "manufacturer": "Lenovo",
+                    "model": "ThinkPad L15",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "15.8GB",
+                    "cpu": "Intel Core i5-1135G7",
+                    "total_storage": "256GB",
+                    "free_storage": "110GB",
+                    "age": 2.9,
+                    "age_category": "<4 years",
+                    "location": "California"
+                },
+                {
+                    "device": "CR214",
+                    "lastLoggedInUser": "ryan",
+                    "manufacturer": "Dell Inc.",
+                    "model": "Latitude 3420",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "8GB",
+                    "cpu": "Intel Core i3-1115G4",
+                    "total_storage": "128GB",
+                    "free_storage": "50GB",
+                    "age": 3.3,
+                    "age_category": "<4 years",
+                    "location": "Mumbai"
+                },
+                {
+                    "device": "CR215",
+                    "lastLoggedInUser": "olivia",
+                    "manufacturer": "HP",
+                    "model": "ProBook 440 G9",
+                    "os": "Windows 11 Home",
+                    "ram": "8GB",
+                    "cpu": "Intel Core i3-1215U",
+                    "total_storage": "256GB",
+                    "free_storage": "170GB",
+                    "age": 5,
+                    "age_category": "<4 years",
+                    "location": "New York"
+                },
+                {
+                    "device": "CR216",
+                    "lastLoggedInUser": "sam",
+                    "manufacturer": "Asus",
+                    "model": "VivoBook S14",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "16GB",
+                    "cpu": "Intel Core i5-1240P",
+                    "total_storage": "512GB",
+                    "free_storage": "350GB",
+                    "age": 4.5,
+                    "age_category": "<4 years",
+                    "location": "Berlin"
+                },
+                {
+                    "device": "CR217",
+                    "lastLoggedInUser": "alex",
+                    "manufacturer": "Dell Inc.",
+                    "model": "XPS 15 9520",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "32GB",
+                    "cpu": "Intel Core i7-12700H",
+                    "total_storage": "1TB",
+                    "free_storage": "760GB",
+                    "age": 1.2,
+                    "age_category": "<4 years",
+                    "location": "Texas"
+                },
+                {
+                    "device": "CR218",
+                    "lastLoggedInUser": "grace",
+                    "manufacturer": "HP",
+                    "model": "Spectre x360 14",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "16GB",
+                    "cpu": "Intel Core i7-1165G7",
+                    "total_storage": "512GB",
+                    "free_storage": "390GB",
+                    "age": 2,
+                    "age_category": "<4 years",
+                    "location": "SOLA"
+                },
+                {
+                    "device": "CR219",
+                    "lastLoggedInUser": "richard",
+                    "manufacturer": "Lenovo",
+                    "model": "IdeaPad Slim 7",
+                    "os": "Windows 11 Home",
+                    "ram": "8GB",
+                    "cpu": "Intel Core i5-1035G1",
+                    "total_storage": "512GB",
+                    "free_storage": "200GB",
+                    "age": 3.6,
+                    "age_category": "<4 years",
+                    "location": "Capetown"
+                },
+                {
+                    "device": "CR220",
+                    "lastLoggedInUser": "sara",
+                    "manufacturer": "Dell Inc.",
+                    "model": "Latitude 7410",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "16GB",
+                    "cpu": "Intel Core i7-10610U",
+                    "total_storage": "512GB",
+                    "free_storage": "278GB",
+                    "age": 2.4,
+                    "age_category": "<4 years",
+                    "location": "New York"
+                },
+                {
+                    "device": "CR221",
+                    "lastLoggedInUser": "derek",
+                    "manufacturer": "HP",
+                    "model": "Elite Dragonfly G2",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "16GB",
+                    "cpu": "Intel Core i7-1165G7",
+                    "total_storage": "256GB",
+                    "free_storage": "140GB",
+                    "age": 1.9,
+                    "age_category": "<4 years",
+                    "location": "Berlin"
+                },
+                {
+                    "device": "CR222",
+                    "lastLoggedInUser": "walter",
+                    "manufacturer": "Acer",
+                    "model": "Swift 5",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "16GB",
+                    "cpu": "Intel Core i5-1135G7",
+                    "total_storage": "512GB",
+                    "free_storage": "330GB",
+                    "age": 2.8,
+                    "age_category": "<4 years",
+                    "location": "London"
+                },
+                {
+                    "device": "CR223",
+                    "lastLoggedInUser": "vicky",
+                    "manufacturer": "HP",
+                    "model": "Envy 15",
+                    "os": "Windows 11 Home",
+                    "ram": "16GB",
+                    "cpu": "Intel Core i7-10750H",
+                    "total_storage": "1TB",
+                    "free_storage": "700GB",
+                    "age": 3,
+                    "age_category": "<4 years",
+                    "location": "California"
+                },
+                {
+                    "device": "CR224",
+                    "lastLoggedInUser": "maria",
+                    "manufacturer": "Lenovo",
+                    "model": "ThinkPad P1 Gen 4",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "32GB",
+                    "cpu": "Intel Core i7-11850H",
+                    "total_storage": "1TB",
+                    "free_storage": "850GB",
+                    "age": null,
+                    "age_category": "<4 years",
+                    "location": "Texas"
+                },
+                {
+                    "device": "CR225",
+                    "lastLoggedInUser": "andrew",
+                    "manufacturer": "Dell Inc.",
+                    "model": "Latitude 3330",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "8GB",
+                    "cpu": "Intel Core i3-1115G4",
+                    "total_storage": "256GB",
+                    "free_storage": "150GB",
+                    "age": null,
+                    "age_category": "<4 years",
+                    "location": "Mumbai"
+                },
+                {
+                    "device": "CR226",
+                    "lastLoggedInUser": "karen",
+                    "manufacturer": "HP",
+                    "model": "Omen 16",
+                    "os": "Windows 11 Home",
+                    "ram": "32GB",
+                    "cpu": "Intel Core i7-12700H",
+                    "total_storage": "1TB",
+                    "free_storage": "600GB",
+                    "age": 1.3,
+                    "age_category": "<4 years",
+                    "location": "SOLA"
+                },
+                {
+                    "device": "CR227",
+                    "lastLoggedInUser": "louis",
+                    "manufacturer": "Acer",
+                    "model": "Aspire 5",
+                    "os": "Windows 11 Home",
+                    "ram": "8GB",
+                    "cpu": "Intel Core i3-1215U",
+                    "total_storage": "256GB",
+                    "free_storage": "165GB",
+                    "age": 2.2,
+                    "age_category": "<4 years",
+                    "location": "Capetown"
+                },
+                {
+                    "device": "CR228",
+                    "lastLoggedInUser": "irene",
+                    "manufacturer": "Dell Inc.",
+                    "model": "Precision 3480",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "32GB",
+                    "cpu": "Intel Core i7-13800H",
+                    "total_storage": "1TB",
+                    "free_storage": "790GB",
+                    "age": 7,
+                    "age_category": "<4 years",
+                    "location": "London"
+                },
+                {
+                    "device": "CR229",
+                    "lastLoggedInUser": "shawn",
+                    "manufacturer": "Lenovo",
+                    "model": "ThinkPad X13",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "16GB",
+                    "cpu": "Intel Core i5-1135G7",
+                    "total_storage": "256GB",
+                    "free_storage": "180GB",
+                    "age": 3.2,
+                    "age_category": "<4 years",
+                    "location": "California"
+                },
+                {
+                    "device": "CR230",
+                    "lastLoggedInUser": "simon",
+                    "manufacturer": "Dell Inc.",
+                    "model": "Latitude 7430 2-in-1",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "32GB",
+                    "cpu": "Intel Core i7-1280P",
+                    "total_storage": "1TB",
+                    "free_storage": "820GB",
+                    "age": null,
+                    "age_category": "<4 years",
+                    "location": "New York"
+                },
+                {
+                    "device": "CR231",
+                    "lastLoggedInUser": "noah",
+                    "manufacturer": "HP",
+                    "model": "EliteBook 830 G9",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "16GB",
+                    "cpu": "Intel Core i5-1250P",
+                    "total_storage": "512GB",
+                    "free_storage": "390GB",
+                    "age": 0.7,
+                    "age_category": "<4 years",
+                    "location": "Berlin"
+                },
+                {
+                    "device": "CR232",
+                    "lastLoggedInUser": "ruby",
+                    "manufacturer": "Asus",
+                    "model": "ROG Strix G15",
+                    "os": "Windows 11 Home",
+                    "ram": "32GB",
+                    "cpu": "AMD Ryzen 9 5900HX",
+                    "total_storage": "1TB",
+                    "free_storage": "620GB",
+                    "age": 1.9,
+                    "age_category": "<4 years",
+                    "location": "Texas"
+                },
+                {
+                    "device": "CR233",
+                    "lastLoggedInUser": "mark",
+                    "manufacturer": "Dell Inc.",
+                    "model": "Latitude 5540",
+                    "os": "Windows 11 Professional Edition",
+                    "ram": "16GB",
+                    "cpu": "Intel Core i5-1335U",
+                    "total_storage": "512GB",
+                    "free_storage": "410GB",
+                    "age": 0.6,
+                    "age_category": "<4 years",
+                    "location": "SOLA"
+                }
+            ],
+            "device_inventory_server": [
+                {
+                    "device": "CR-7",
+                    "lastLoggedInUser": "network",
+                    "manufacturer": "Microsoft Corporation",
+                    "model": "Virtual Machine",
+                    "os": "Windows Server 2016 Standard Edition",
+                    "ram": "11.6GB",
+                    "cpu": "Intel(R) Xeon(R) Silver 4114 CPU @ 2.20GHz",
+                    "total_storage": "4523.3GB",
+                    "free_storage": "1087.7GB",
+                    "age": 2.2,
+                    "age_category": "<4 years",
+                    "location": "Wall street"
+                },
+                {
+                    "device": "CR-12",
+                    "lastLoggedInUser": "system-admin",
+                    "manufacturer": "Dell Inc.",
+                    "model": "PowerEdge R740",
+                    "os": "Windows Server 2019 Datacenter Edition",
+                    "ram": "63.9GB",
+                    "cpu": "Intel(R) Xeon(R) Gold 5218R CPU @ 2.10GHz",
+                    "total_storage": "8192GB",
+                    "free_storage": "4021GB",
+                    "age": 3,
+                    "age_category": "<4 years",
+                    "location": "New Jersey"
+                },
+                {
+                    "device": "CR-18",
+                    "lastLoggedInUser": "root",
+                    "manufacturer": "Hewlett-Packard",
+                    "model": "ProLiant DL380 Gen10",
+                    "os": "Ubuntu Server 22.04 LTS",
+                    "ram": "127.8GB",
+                    "cpu": "Intel(R) Xeon(R) Silver 4214 CPU @ 2.20GHz",
+                    "total_storage": "10240GB",
+                    "free_storage": "6850GB",
+                    "age": 3.4,
+                    "age_category": "<4 years",
+                    "location": "Wall street"
+                },
+                {
+                    "device": "CR-25",
+                    "lastLoggedInUser": "automation",
+                    "manufacturer": "VMware",
+                    "model": "ESXi Virtual Machine",
+                    "os": "Windows Server 2022 Standard Edition",
+                    "ram": "31.7GB",
+                    "cpu": "Intel(R) Xeon(R) Gold 6230 CPU @ 2.10GHz",
+                    "total_storage": "6144GB",
+                    "free_storage": "2980GB",
+                    "age": 0.9,
+                    "age_category": "<4 years",
+                    "location": "Frankfurt"
+                }
+            ]
+        }
+    },
+    "Autotask": {
+        "charts": {
+            "daily_tickets_trend": {
+                "created": [
+                    1,
+                    14,
+                    3,
+                    8,
+                    5,
+                    0,
+                    1,
+                    7,
+                    7,
+                    12,
+                    2,
+                    3,
+                    0,
+                    0,
+                    9,
+                    7,
+                    4,
+                    0,
+                    5,
+                    0,
+                    0,
+                    4,
+                    6,
+                    9,
+                    2,
+                    4,
+                    1,
+                    1,
+                    7,
+                    6
+                ],
+                "completed": [
+                    0,
+                    10,
+                    7,
+                    5,
+                    4,
+                    0,
+                    0,
+                    4,
+                    8,
+                    11,
+                    10,
+                    2,
+                    0,
+                    0,
+                    6,
+                    7,
+                    4,
+                    1,
+                    5,
+                    0,
+                    0,
+                    1,
+                    4,
+                    1,
+                    1,
+                    8,
+                    1,
+                    0,
+                    3,
+                    6
+                ],
+                "days": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20,
+                    21,
+                    22,
+                    23,
+                    24,
+                    25,
+                    26,
+                    27,
+                    28,
+                    29,
+                    30
+                ]
+            },
+            "monthly_tickets_by_type": {
+                "workstation": 19,
+                "email": 15,
+                "user_access": 18,
+                "application_software": 16,
+                "server": 4,
+                "network_internet": 5,
+                "printer_scanner": 3,
+                "shared_drive": 25,
+                "cybersecurity": 23
+            },
+            "open_ticket_priority_distribution": {
+                "critical": 2,
+                "high": 3,
+                "medium": 8,
+                "low": 1
+            },
+            "sla_performance": {
+                "first_response_percentage": 98.1,
+                "resolution_percentage": 71.9
+            },
+            "open_tickets_by_issue_type": [
+                {
+                    "issue_type": "Email",
+                    "total_count": 3,
+                    "sub_issues": [
+                        {
+                            "sub_issue_type": "SPAM",
+                            "count": 1
+                        },
+                        {
+                            "sub_issue_type": "Email Delivery Failure",
+                            "count": 2
+                        }
+                    ]
+                },
+                {
+                    "issue_type": "Network/Internet",
+                    "total_count": 2,
+                    "sub_issues": [
+                        {
+                            "sub_issue_type": "Network Performance",
+                            "count": 2
+                        }
+                    ]
+                },
+                {
+                    "issue_type": "Phone",
+                    "total_count": 2,
+                    "sub_issues": [
+                        {
+                            "sub_issue_type": "VoIP Not Working",
+                            "count": 1
+                        },
+                        {
+                            "sub_issue_type": "Call Quality Issues",
+                            "count": 1
+                        }
+                    ]
+                },
+                {
+                    "issue_type": "Printer/Scanner/Copier",
+                    "total_count": 2,
+                    "sub_issues": [
+                        {
+                            "sub_issue_type": "Print Error",
+                            "count": 1
+                        },
+                        {
+                            "sub_issue_type": "Scanner Not Detected",
+                            "count": 1
+                        }
+                    ]
+                },
+                {
+                    "issue_type": "Shared Drive",
+                    "total_count": 2,
+                    "sub_issues": [
+                        {
+                            "sub_issue_type": "Shared Drive Access/Permissions",
+                            "count": 1
+                        },
+                        {
+                            "sub_issue_type": "File Synchronization Issue",
+                            "count": 1
+                        }
+                    ]
+                },
+                {
+                    "issue_type": "User Access and Management",
+                    "total_count": 2,
+                    "sub_issues": [
+                        {
+                            "sub_issue_type": "Employee Termination",
+                            "count": 1
+                        },
+                        {
+                            "sub_issue_type": "Password Reset Request",
+                            "count": 1
+                        }
+                    ]
+                },
+                {
+                    "issue_type": "Workstation (Laptop/Desktop)",
+                    "total_count": 1,
+                    "sub_issues": [
+                        {
+                            "sub_issue_type": "Other Peripheral Device",
+                            "count": 1
+                        }
+                    ]
+                }
+            ],
+            "tickets_by_contact": {
+                "tickets_by_contact_summary": {
+                    "contacts_summary": {
+                        "contacts_count": 22,
+                        "total_tickets": 128,
+                        "top_contact": "Emily Gupton"
+                    }
+                },
+                "data": [
+                    {
+                        "name": "L. Gupton",
+                        "tickets": 49
+                    },
+                    {
+                        "name": "Automation Sheets",
+                        "tickets": 26
+                    },
+                    {
+                        "name": "Other",
+                        "tickets": 20
+                    },
+                    {
+                        "name": "TLIT unknown",
+                        "tickets": 6
+                    },
+                    {
+                        "name": "Mark Wood",
+                        "tickets": 5
+                    },
+                    {
+                        "name": "Sarah Williams",
+                        "tickets": 5
+                    },
+                    {
+                        "name": "Stinnette True",
+                        "tickets": 5
+                    },
+                    {
+                        "name": "Amy Vans",
+                        "tickets": 2
+                    },
+                    {
+                        "name": "Chris Morris",
+                        "tickets": 2
+                    },
+                    {
+                        "name": "Camille Gordon",
+                        "tickets": 2
+                    },
+                    {
+                        "name": "Scott Lee",
+                        "tickets": 2
+                    },
+                    {
+                        "name": "Pamela Frisina-Rosado",
+                        "tickets": 2
+                    },
+                    {
+                        "name": "JD Frank",
+                        "tickets": 2
+                    }
+                ]
+            }
+        }
+    },
+    "Cove": {
+        "charts": {
+            "total_devices_storage_summary_cove": {
+                "totalDevices": 38,
+                "used_storage": 4.30,
+                "user_mailboxes": 21,
+                "shared_mailboxes": 16,
+                "onedrive_user_accounts": 15
+            },
+            "asset_type_distribution_cove": {
+                "physical": 28,
+                "virtual": 10,
+                "others": 0
+            },
+            "devices_distribution_cove": {
+                "workstations": 34,
+                "servers": 4,
+                "others": 0
+            },
+            "retention_policy_distribution_cove": {
+                "365 Day Retention": 4,
+                "90D-52W-36M-7Y 2": 3,
+                "180 Day Retention": 5
+            }
+        }
+    },
+    "Proofpoint": {
+        "charts": {
+            "threat_type_pp": {
+                "spam": 890,
+                "virus": 475,
+                "phishing": 820,
+                "malicious_attachment": 340,
+                "imposter": 180
+            },
+            "traffic_direction_comparison_pp": [
+                {
+                    "category": "Clean",
+                    "inbound": 1250,
+                    "outbound": 1180
+                },
+                {
+                    "category": "Spam",
+                    "inbound": 900,
+                    "outbound": 1200
+                },
+                {
+                    "category": "Virus",
+                    "inbound": 450,
+                    "outbound": 85
+                },
+                {
+                    "category": "Fraud",
+                    "inbound": 320,
+                    "outbound": 45
+                },
+                {
+                    "category": "Blacklist",
+                    "inbound": 680,
+                    "outbound": 120
+                }
+            ],
+            "inbound_mail_composition_pp": {
+                "clean": 150,
+                "spam": 520,
+                "virus": 185,
+                "fraud": 212
+            }
+        }
+    },
+    "ConnectSecure": {
+        "charts": {
+            "asset_type_distribution": {
+                "live_count": {
+                    "discovered": 25,
+                    "other_asset": 12,
+                    "unknown": 1
+                },
+                "monthly_count": {
+                    "discovered": 6,
+                    "other_asset": 2,
+                    "unknown": 1
+                },
+                "quarterly_count": {
+                    "discovered": 18,
+                    "other_asset": 7,
+                    "unknown": 2
+                }
+            },
+            "operating_system_distribution": {
+                "live_count": {
+                    "Windows": 29,
+                    "Linux": 1,
+                    "Others": 8
+                },
+                "monthly_count": {
+                    "Others": 2,
+                    "Windows": 5
+                },
+                "quarterly_count": {
+                    "Windows": 18,
+                    "Linux": 1,
+                    "Others": 5
+                }
+            },
+            "security_risk_score": {
+                "live_count": 55.39,
+                "monthly_count": 2.17,
+                "quarterly_count": 38.75
+            },
+            "agent_type_distribution": {
+                "total_agents": 38,
+                "breakdown": [
+                    {
+                        "agent_type": "LIGHTWEIGHT",
+                        "count": 27,
+                        "percentage": 71.1
+                    },
+                    {
+                        "agent_type": "PROBE",
+                        "count": 11,
+                        "percentage": 28.9
+                    }
+                ]
+            },
+            "vulnerability_severity": {
+                "live_count": {
+                    "critical": 28,
+                    "high": 425,
+                    "medium": 277,
+                    "low": 25
+                },
+                "monthly_count": {
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0
+                }
+            }
+        }
+    },
+    "Bitdefender": {
+        "charts": {
+            "riskScore_bitdefender": {
+                "value": "50%",
+                "impact": "Medium",
+                "misconfigurations": "80%",
+                "appVulnerabilities": "30%",
+                "humanRisks": "10%",
+                "industryModifier": "0%"
+            },
+            "inventory_summary_bitdefender": {
+                "summary": {
+                    "windowsWorkstations": 33,
+                    "windowsServers": 4,
+                    "macOS": 0,
+                    "linux": 1
+                },
+                "count": {
+                    "managedEndpoints": 98,
+                    "physicalMachines": 28,
+                    "virtualMachines": 10
+                }
+            }
+        },
+        "tables": {
+            "networkinventory_bitdefender": [
+                {
+                    "Module": "antimalware",
+                    "enable": 80,
+                    "notenable": 0,
+                    "displayName": "Antimalware"
+                },
+                {
+                    "Module": "advancedThreatControl",
+                    "enable": 80,
+                    "notenable": 0,
+                    "displayName": "Advanced Threat Control"
+                },
+                {
+                    "Module": "advancedAntiExploit",
+                    "enable": 82,
+                    "notenable": 0,
+                    "displayName": "Advanced Anti-Exploit"
+                },
+                {
+                    "Module": "firewall",
+                    "enable": 78,
+                    "notenable": 4,
+                    "displayName": "Firewall"
+                },
+                {
+                    "Module": "networkAttackDefense",
+                    "enable": 75,
+                    "notenable": 7,
+                    "displayName": "Network Protection"
+                },
+                {
+                    "Module": "deviceControl",
+                    "enable": 82,
+                    "notenable": 0,
+                    "displayName": "Device Control"
+                },
+                {
+                    "Module": "encryption",
+                    "enable": 2,
+                    "notenable": 70,
+                    "displayName": "Encryption"
+                },
+                {
+                    "Module": "patchManagement",
+                    "enable": 70,
+                    "notenable": 0,
+                    "displayName": "Patch Management"
+                },
+                {
+                    "Module": "edrSensor",
+                    "enable": 65,
+                    "notenable": 17,
+                    "displayName": "EDR Sensor"
+                },
+                {
+                    "Module": "powerUser",
+                    "enable": 12,
+                    "notenable": 0,
+                    "displayName": "Power User"
+                },
+                {
+                    "Module": "exchange",
+                    "enable": 0,
+                    "notenable": 82,
+                    "displayName": "Exchange Protection"
+                },
+                {
+                    "Module": "containerProtection",
+                    "enable": 0,
+                    "notenable": 70,
+                    "displayName": "Container Protection"
+                },
+                {
+                    "Module": "integrityMonitoring",
+                    "enable": 10,
+                    "notenable": 3,
+                    "displayName": "Integrity Monitoring"
+                },
+                {
+                    "Module": "phASR",
+                    "enable": 5,
+                    "notenable": 0,
+                    "displayName": "PHASR"
+                }
+            ]
+        }
+    },
+    "SentinelOne": {
+        "charts": {
+            "secured_devices_by_domain": {
+                "workgroup": 68,
+                "drf": 12,
+                "hiscross": 133,
+                "dynamesh": 77,
+                "others": 10,
+                "attlocal_dot_net": 15
+            },
+            "secured_devices_by_role": {
+                "desktop": 11,
+                "laptop": 60,
+                "server": 10
+            },
+            "secured_devices_by_os": {
+                "windows": 69,
+                "macos": 2,
+                "linux": 5
+            },
+            "infected_endpoints": {
+                "healthy": 71,
+                "infected": 22
+            },
+            "agent_version_coverage": {
+                "25.1.3.334": 64,
+                "25.1.2.8039": 11,
+                "25.2.1.287": 43
+            },
+            "endpoint_connection_status": {
+                "connected": 71,
+                "disconnected": 23,
+                "connecting": 0,
+                "disconnecting": 0
+            },
+            "severity_levels_threats": {
+                "suspicious": 5,
+                "malicious": 3,
+                "n/a": 1
+            },
+            "incident_status": {
+                "resolved": 14,
+                "unresolved": 2,
+                "in_progress": 1
+            },
+            "analyst_verdicts_threats": {
+                "false_positive": 1,
+                "true_positive": 2,
+                "suspicious": 5,
+                "undefined": 1
+            },
+            "threats_by_detection_engine": {
+                "sentinelone_cloud": 7,
+                "on_write_static_ai": 2,
+                "behavioral_ai": 10,
+                "reputation": 3
+            },
+            "threats_by_type": {
+                "Malware": 1,
+                "Ransomware": 3,
+                "General": 1
+            }
+        }
+    },
+    "NodeWare": {
+        "charts": {
+            "summary_metrics": {
+                "average_score": 788,
+                "assets": 126,
+                "unique_cves": 1288
+            },
+            "cvss_breakdown": {
+                "critical": 84,
+                "high": 908,
+                "medium": 278,
+                "low": 18
+            }
+        },
+        "tables": {
+            "known_exploited_cves": [{
+
+            "cve_id": "CVE-2026-32202",
+            "title": "Windows Shell Spoofing Vulnerability",
+            "date_added": "2026-04-28",
+            "assets": 6
+          },
+          {
+            "cve_id": "CVE-2023-36424",
+            "title": "Windows Common Log File System Driver Elevation of Privilege Vulnerability",
+            "date_added": "2026-04-13",
+            "assets": 1
+          }],
+            "cvss_prioritized": [
+                {
+                    "cve": "CVE-2026-4692",
+                    "title": "Sandbox escape in the Responsive Design Mode component",
+                    "severity": "CRITICAL",
+                    "cvss_score": 10,
+                    "assets": 1
+                },
+                {
+                    "cve": "CVE-2026-2778",
+                    "title": "Sandbox escape due to incorrect boundary conditions in the DOM: Core and HTML component",
+                    "severity": "CRITICAL",
+                    "cvss_score": 10,
+                    "assets": 1
+                },
+                {
+                    "cve": "CVE-2026-2760",
+                    "title": "Sandbox escape due to incorrect boundary conditions in the Graphics: WebRender component",
+                    "severity": "CRITICAL",
+                    "cvss_score": 10,
+                    "assets": 1
+                },
+                {
+                    "cve": "CVE-2026-4689",
+                    "title": "Sandbox escape due to incorrect boundary conditions, integer overflow in the XPCOM component",
+                    "severity": "CRITICAL",
+                    "cvss_score": 10,
+                    "assets": 1
+                },
+                {
+                    "cve": "CVE-2026-4725",
+                    "title": "Sandbox escape due to use-after-free in the Graphics: Canvas2D component",
+                    "severity": "CRITICAL",
+                    "cvss_score": 10,
+                    "assets": 1
+                },
+                {
+                    "cve": "CVE-2026-2776",
+                    "title": "Sandbox escape due to incorrect boundary conditions",
+                    "severity": "CRITICAL",
+                    "cvss_score": 10,
+                    "assets": 1
+                },
+                {
+                    "cve": "CVE-2026-2761",
+                    "title": "Sandbox escape in the Graphics: WebRender component",
+                    "severity": "CRITICAL",
+                    "cvss_score": 10,
+                    "assets": 1
+                },
+                {
+                    "cve": "CVE-2026-4688",
+                    "title": "Sandbox escape due to use-after-free in the Disability Access APIs component",
+                    "severity": "CRITICAL",
+                    "cvss_score": 10,
+                    "assets": 1
+                },
+                {
+                    "cve": "CVE-2026-2768",
+                    "title": "Sandbox escape in the Storage: IndexedDB component",
+                    "severity": "CRITICAL",
+                    "cvss_score": 10,
+                    "assets": 1
+                },
+                {
+                    "cve": "CVE-2025-49708",
+                    "title": "Microsoft Graphics Component Elevation of Privilege Vulnerability",
+                    "severity": "CRITICAL",
+                    "cvss_score": 9.9,
+                    "assets": 2
+                },
+                {
+                    "cve": "CVE-2021-21783",
+                    "title": "Vulnerability in gSOAP",
+                    "severity": "CRITICAL",
+                    "cvss_score": 9.8,
+                    "assets": 6
+                },
+                {
+                    "cve": "CVE-2020-13576",
+                    "title": "Vulnerability in gSOAP",
+                    "severity": "CRITICAL",
+                    "cvss_score": 9.8,
+                    "assets": 6
+                },
+                {
+                    "cve": "CVE-2025-53766",
+                    "title": "GDI+ Remote Code Execution Vulnerability",
+                    "severity": "CRITICAL",
+                    "cvss_score": 9.8,
+                    "assets": 2
+                },
+                {
+                    "cve": "CVE-2025-47981",
+                    "title": "SPNEGO Extended Negotiation (NEGOEX) Security Mechanism Remote Code Execution Vulnerability",
+                    "severity": "CRITICAL",
+                    "cvss_score": 9.8,
+                    "assets": 2
+                },
+                {
+                    "cve": "CVE-2025-60724",
+                    "title": "The host is missing a security update for Microsoft Windows 11 and Windows Server 2025 - KB5068861",
+                    "severity": "CRITICAL",
+                    "cvss_score": 9.8,
+                    "assets": 2
+                },
+                {
+                    "cve": "CVE-2026-33824",
+                    "title": "Windows Internet Key Exchange (IKE) Service Extensions Remote Code Execution Vulnerability",
+                    "severity": "CRITICAL",
+                    "cvss_score": 9.8,
+                    "assets": 2
+                },
+                {
+                    "cve": "CVE-2026-4710",
+                    "title": "Incorrect boundary conditions in the Audio/Video component",
+                    "severity": "CRITICAL",
+                    "cvss_score": 9.8,
+                    "assets": 1
+                },
+                {
+                    "cve": "CVE-2026-2757",
+                    "title": "Incorrect boundary conditions in the WebRTC: Audio/Video component",
+                    "severity": "CRITICAL",
+                    "cvss_score": 9.8,
+                    "assets": 1
+                },
+                {
+                    "cve": "CVE-2026-2759",
+                    "title": "Incorrect boundary conditions in the Graphics: ImageLib component",
+                    "severity": "CRITICAL",
+                    "cvss_score": 9.8,
+                    "assets": 1
+                },
+                {
+                    "cve": "CVE-2026-2793",
+                    "title": "Multiple vulnerabilities in Mozilla Firefox - MFSA2026-13",
+                    "severity": "CRITICAL",
+                    "cvss_score": 9.8,
+                    "assets": 1
+                },
+                {
+                    "cve": "CVE-2026-5734",
+                    "title": "Memory safety bugs fixed in Firefox ESR 140.9.1, Thunderbird ESR 140.9.1, Firefox 149.0.2 and Thunderbird 149.0.2",
+                    "severity": "CRITICAL",
+                    "cvss_score": 9.8,
+                    "assets": 1
+                },
+                {
+                    "cve": "CVE-2026-2786",
+                    "title": "Use-after-free in the JavaScript Engine component",
+                    "severity": "CRITICAL",
+                    "cvss_score": 9.8,
+                    "assets": 1
+                },
+                {
+                    "cve": "CVE-2026-2788",
+                    "title": "Incorrect boundary conditions in the Audio/Video: GMP component",
+                    "severity": "CRITICAL",
+                    "cvss_score": 9.8,
+                    "assets": 1
+                },
+                {
+                    "cve": "CVE-2026-2807",
+                    "title": "Memory safety bugs fixed in Firefox 148 and Thunderbird 148",
+                    "severity": "CRITICAL",
+                    "cvss_score": 9.8,
+                    "assets": 1
+                },
+                {
+                    "cve": "CVE-2026-2762",
+                    "title": "Integer overflow in the JavaScript: Standard Library component",
+                    "severity": "CRITICAL",
+                    "cvss_score": 9.8,
+                    "assets": 1
+                }
+            ],
+            "asset_risk_score": [
+                {
+                    "asset_name": "OFL-SKEIL-NL",
+                    "total": 268,
+                    "critical": 0,
+                    "high": 208,
+                    "medium": 22,
+                    "low": 38,
+                    "score": 0
+                },
+                {
+                    "asset_name": "OFL-TSALAZAR-L",
+                    "total": 615,
+                    "critical": 5,
+                    "high": 430,
+                    "medium": 127,
+                    "low": 53,
+                    "score": 0
+                },
+                {
+                    "asset_name": "OFL-KPHELAN-L",
+                    "total": 285,
+                    "critical": 0,
+                    "high": 211,
+                    "medium": 25,
+                    "low": 49,
+                    "score": 0
+                },
+                {
+                    "asset_name": "OFL-NMAXHEIMER",
+                    "total": 282,
+                    "critical": 0,
+                    "high": 208,
+                    "medium": 22,
+                    "low": 52,
+                    "score": 0
+                },
+                {
+                    "asset_name": "OFL-AFLESNER-L",
+                    "total": 277,
+                    "critical": 0,
+                    "high": 208,
+                    "medium": 22,
+                    "low": 47,
+                    "score": 0
+                },
+                {
+                    "asset_name": "OFL-KBORK-L",
+                    "total": 269,
+                    "critical": 0,
+                    "high": 208,
+                    "medium": 22,
+                    "low": 39,
+                    "score": 0
+                },
+                {
+                    "asset_name": "OFL-AAUGUSTYNOW",
+                    "total": 261,
+                    "critical": 0,
+                    "high": 197,
+                    "medium": 20,
+                    "low": 44,
+                    "score": 0
+                },
+                {
+                    "asset_name": "OFL-JDICKINSON-",
+                    "total": 250,
+                    "critical": 0,
+                    "high": 198,
+                    "medium": 23,
+                    "low": 29,
+                    "score": 0
+                },
+                {
+                    "asset_name": "OFL-NHUGHES-L",
+                    "total": 277,
+                    "critical": 0,
+                    "high": 198,
+                    "medium": 22,
+                    "low": 57,
+                    "score": 0
+                },
+                {
+                    "asset_name": "OFL-CWARTICK",
+                    "total": 257,
+                    "critical": 0,
+                    "high": 208,
+                    "medium": 22,
+                    "low": 27,
+                    "score": 0
+                },
+                {
+                    "asset_name": "OFL-RRUDMAN-L",
+                    "total": 270,
+                    "critical": 0,
+                    "high": 208,
+                    "medium": 22,
+                    "low": 40,
+                    "score": 0
+                },
+                {
+                    "asset_name": "OFL-KEDWARDS",
+                    "total": 193,
+                    "critical": 67,
+                    "high": 41,
+                    "medium": 13,
+                    "low": 72,
+                    "score": 0
+                },
+                {
+                    "asset_name": "OFL-AWELSH-NL",
+                    "total": 272,
+                    "critical": 0,
+                    "high": 208,
+                    "medium": 22,
+                    "low": 42,
+                    "score": 0
+                },
+                {
+                    "asset_name": "OFL-DCASON2",
+                    "total": 214,
+                    "critical": 6,
+                    "high": 117,
+                    "medium": 62,
+                    "low": 29,
+                    "score": 0
+                },
+                {
+                    "asset_name": "OFL-KPHELAN",
+                    "total": 769,
+                    "critical": 7,
+                    "high": 513,
+                    "medium": 189,
+                    "low": 60,
+                    "score": 0
+                },
+                {
+                    "asset_name": "OFL-GPETRILLI-L",
+                    "total": 264,
+                    "critical": 0,
+                    "high": 208,
+                    "medium": 22,
+                    "low": 34,
+                    "score": 0
+                },
+                {
+                    "asset_name": "OFL-MWIEDEMAN-L",
+                    "total": 165,
+                    "critical": 0,
+                    "high": 106,
+                    "medium": 15,
+                    "low": 44,
+                    "score": 41
+                },
+                {
+                    "asset_name": "OFL-TCASSIDY-NE",
+                    "total": 132,
+                    "critical": 0,
+                    "high": 82,
+                    "medium": 13,
+                    "low": 37,
+                    "score": 259
+                },
+                {
+                    "asset_name": "KM9DF97E",
+                    "total": 30,
+                    "critical": 2,
+                    "high": 9,
+                    "medium": 0,
+                    "low": 19,
+                    "score": 310
+                },
+                {
+                    "asset_name": "KM2913DE",
+                    "total": 30,
+                    "critical": 2,
+                    "high": 9,
+                    "medium": 0,
+                    "low": 19,
+                    "score": 310
+                },
+                {
+                    "asset_name": "KM01F333",
+                    "total": 27,
+                    "critical": 2,
+                    "high": 9,
+                    "medium": 0,
+                    "low": 16,
+                    "score": 324
+                },
+                {
+                    "asset_name": "OFL-ESMITH-L",
+                    "total": 106,
+                    "critical": 0,
+                    "high": 55,
+                    "medium": 14,
+                    "low": 37,
+                    "score": 471
+                },
+                {
+                    "asset_name": "10.1.10.32",
+                    "total": 22,
+                    "critical": 2,
+                    "high": 7,
+                    "medium": 0,
+                    "low": 13,
+                    "score": 492
+                },
+                {
+                    "asset_name": "10.1.10.109",
+                    "total": 16,
+                    "critical": 2,
+                    "high": 7,
+                    "medium": 0,
+                    "low": 7,
+                    "score": 510
+                },
+                {
+                    "asset_name": "10.1.10.70",
+                    "total": 16,
+                    "critical": 2,
+                    "high": 7,
+                    "medium": 0,
+                    "low": 7,
+                    "score": 510
+                },
+                {
+                    "asset_name": "OFL-DCHAPMAN",
+                    "total": 94,
+                    "critical": 0,
+                    "high": 25,
+                    "medium": 8,
+                    "low": 61,
+                    "score": 747
+                },
+                {
+                    "asset_name": "Makoslab",
+                    "total": 77,
+                    "critical": 1,
+                    "high": 19,
+                    "medium": 11,
+                    "low": 46,
+                    "score": 749
+                },
+                {
+                    "asset_name": "OFL-LMILLER-L",
+                    "total": 79,
+                    "critical": 0,
+                    "high": 15,
+                    "medium": 11,
+                    "low": 53,
+                    "score": 774
+                },
+                {
+                    "asset_name": "OFL-NELBERNGI",
+                    "total": 77,
+                    "critical": 0,
+                    "high": 17,
+                    "medium": 9,
+                    "low": 51,
+                    "score": 803
+                },
+                {
+                    "asset_name": "OFL-TSALAZAR-D",
+                    "total": 85,
+                    "critical": 0,
+                    "high": 17,
+                    "medium": 8,
+                    "low": 60,
+                    "score": 807
+                },
+                {
+                    "asset_name": "OFL-NHUGHES2",
+                    "total": 73,
+                    "critical": 0,
+                    "high": 17,
+                    "medium": 8,
+                    "low": 48,
+                    "score": 808
+                },
+                {
+                    "asset_name": "OFL-AAUGUSTYNOW",
+                    "total": 72,
+                    "critical": 0,
+                    "high": 17,
+                    "medium": 8,
+                    "low": 47,
+                    "score": 809
+                },
+                {
+                    "asset_name": "OFL-AMUCHONEY-L",
+                    "total": 67,
+                    "critical": 0,
+                    "high": 8,
+                    "medium": 15,
+                    "low": 44,
+                    "score": 830
+                },
+                {
+                    "asset_name": "OFL-MMEYERHOFF-",
+                    "total": 58,
+                    "critical": 0,
+                    "high": 10,
+                    "medium": 6,
+                    "low": 42,
+                    "score": 848
+                },
+                {
+                    "asset_name": "OFL-RJALILIAN-N",
+                    "total": 67,
+                    "critical": 0,
+                    "high": 12,
+                    "medium": 7,
+                    "low": 48,
+                    "score": 854
+                },
+                {
+                    "asset_name": "OFL-LHOWARD-D",
+                    "total": 72,
+                    "critical": 0,
+                    "high": 9,
+                    "medium": 7,
+                    "low": 56,
+                    "score": 879
+                },
+                {
+                    "asset_name": "OFL-JDEWALD-L",
+                    "total": 46,
+                    "critical": 0,
+                    "high": 11,
+                    "medium": 2,
+                    "low": 33,
+                    "score": 895
+                },
+                {
+                    "asset_name": "OFL-ALEEMING",
+                    "total": 73,
+                    "critical": 0,
+                    "high": 8,
+                    "medium": 5,
+                    "low": 60,
+                    "score": 902
+                },
+                {
+                    "asset_name": "OFL-MMEYERHOFF-",
+                    "total": 71,
+                    "critical": 0,
+                    "high": 3,
+                    "medium": 10,
+                    "low": 58,
+                    "score": 902
+                },
+                {
+                    "asset_name": "OFL-AGRESKO-L",
+                    "total": 52,
+                    "critical": 0,
+                    "high": 3,
+                    "medium": 10,
+                    "low": 39,
+                    "score": 904
+                },
+                {
+                    "asset_name": "OFL-ZALHARBI",
+                    "total": 91,
+                    "critical": 0,
+                    "high": 7,
+                    "medium": 5,
+                    "low": 79,
+                    "score": 908
+                },
+                {
+                    "asset_name": "IT-JUMPBOX",
+                    "total": 16,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 4,
+                    "low": 12,
+                    "score": 916
+                },
+                {
+                    "asset_name": "OFL-DCHAPMAN-NE",
+                    "total": 54,
+                    "critical": 0,
+                    "high": 2,
+                    "medium": 5,
+                    "low": 47,
+                    "score": 944
+                },
+                {
+                    "asset_name": "OFL-LPAWLOWSKI-",
+                    "total": 53,
+                    "critical": 1,
+                    "high": 2,
+                    "medium": 4,
+                    "low": 46,
+                    "score": 945
+                },
+                {
+                    "asset_name": "OFL-DCASON-3",
+                    "total": 77,
+                    "critical": 0,
+                    "high": 2,
+                    "medium": 4,
+                    "low": 71,
+                    "score": 949
+                },
+                {
+                    "asset_name": "OFL-MDYE",
+                    "total": 35,
+                    "critical": 0,
+                    "high": 3,
+                    "medium": 2,
+                    "low": 30,
+                    "score": 958
+                },
+                {
+                    "asset_name": "OFL-CHAAKMA",
+                    "total": 45,
+                    "critical": 0,
+                    "high": 1,
+                    "medium": 4,
+                    "low": 40,
+                    "score": 959
+                },
+                {
+                    "asset_name": "OFL-ZTHOMPSON-L",
+                    "total": 35,
+                    "critical": 0,
+                    "high": 1,
+                    "medium": 4,
+                    "low": 30,
+                    "score": 960
+                },
+                {
+                    "asset_name": "OFL-KOFLAHERTY-",
+                    "total": 29,
+                    "critical": 0,
+                    "high": 1,
+                    "medium": 4,
+                    "low": 24,
+                    "score": 960
+                },
+                {
+                    "asset_name": "OFL-JIRACE-NEW",
+                    "total": 72,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 5,
+                    "low": 67,
+                    "score": 963
+                },
+                {
+                    "asset_name": "OFL-JLUSH-NEW",
+                    "total": 41,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 5,
+                    "low": 36,
+                    "score": 965
+                },
+                {
+                    "asset_name": "OFL-AAJIERE",
+                    "total": 63,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 4,
+                    "low": 59,
+                    "score": 969
+                },
+                {
+                    "asset_name": "OFL-SKEIL-NEW",
+                    "total": 58,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 4,
+                    "low": 54,
+                    "score": 969
+                },
+                {
+                    "asset_name": "OFL-HKEGL",
+                    "total": 49,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 4,
+                    "low": 45,
+                    "score": 970
+                },
+                {
+                    "asset_name": "OFL-MDORICH",
+                    "total": 50,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 4,
+                    "low": 46,
+                    "score": 970
+                },
+                {
+                    "asset_name": "OFL-HBOHR-D",
+                    "total": 52,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 4,
+                    "low": 48,
+                    "score": 970
+                },
+                {
+                    "asset_name": "OFL-MDESNICK-D",
+                    "total": 58,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 4,
+                    "low": 54,
+                    "score": 970
+                },
+                {
+                    "asset_name": "OFL-AMUCHONEY-D",
+                    "total": 47,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 4,
+                    "low": 43,
+                    "score": 970
+                },
+                {
+                    "asset_name": "OFL-KSTEPHENS",
+                    "total": 30,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 4,
+                    "low": 26,
+                    "score": 971
+                },
+                {
+                    "asset_name": "OFL-JSHEEHAN",
+                    "total": 36,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 4,
+                    "low": 32,
+                    "score": 971
+                },
+                {
+                    "asset_name": "10.1.10.233",
+                    "total": 9,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 9,
+                    "score": 982
+                },
+                {
+                    "asset_name": "10.1.10.67",
+                    "total": 6,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 6,
+                    "score": 989
+                },
+                {
+                    "asset_name": "10.1.10.60",
+                    "total": 6,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 6,
+                    "score": 990
+                },
+                {
+                    "asset_name": "10.1.10.62",
+                    "total": 6,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 6,
+                    "score": 990
+                },
+                {
+                    "asset_name": "10.1.10.59",
+                    "total": 6,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 6,
+                    "score": 990
+                },
+                {
+                    "asset_name": "10.1.10.74",
+                    "total": 4,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 4,
+                    "score": 993
+                },
+                {
+                    "asset_name": "10.1.10.242",
+                    "total": 4,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 4,
+                    "score": 993
+                },
+                {
+                    "asset_name": "10.1.10.98",
+                    "total": 4,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 4,
+                    "score": 993
+                },
+                {
+                    "asset_name": "10.1.10.76",
+                    "total": 4,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 4,
+                    "score": 993
+                },
+                {
+                    "asset_name": "10.1.10.90",
+                    "total": 4,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 4,
+                    "score": 993
+                },
+                {
+                    "asset_name": "10.1.10.75",
+                    "total": 4,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 4,
+                    "score": 993
+                },
+                {
+                    "asset_name": "10.1.10.50",
+                    "total": 4,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 4,
+                    "score": 993
+                },
+                {
+                    "asset_name": "10.1.10.107",
+                    "total": 4,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 4,
+                    "score": 993
+                },
+                {
+                    "asset_name": "10.1.10.71",
+                    "total": 4,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 4,
+                    "score": 993
+                },
+                {
+                    "asset_name": "10.1.10.99",
+                    "total": 4,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 4,
+                    "score": 993
+                },
+                {
+                    "asset_name": "10.1.10.81",
+                    "total": 4,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 4,
+                    "score": 993
+                },
+                {
+                    "asset_name": "10.1.10.84",
+                    "total": 4,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 4,
+                    "score": 993
+                },
+                {
+                    "asset_name": "10.1.10.77",
+                    "total": 4,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 4,
+                    "score": 993
+                },
+                {
+                    "asset_name": "10.1.10.80",
+                    "total": 4,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 4,
+                    "score": 993
+                },
+                {
+                    "asset_name": "10.1.10.82",
+                    "total": 4,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 4,
+                    "score": 993
+                },
+                {
+                    "asset_name": "10.1.10.57",
+                    "total": 4,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 4,
+                    "score": 994
+                },
+                {
+                    "asset_name": "10.1.10.1",
+                    "total": 3,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 3,
+                    "score": 995
+                },
+                {
+                    "asset_name": "10.1.10.58",
+                    "total": 2,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 2,
+                    "score": 997
+                },
+                {
+                    "asset_name": "oflaherty-law.com",
+                    "total": 2,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 2,
+                    "score": 997
+                },
+                {
+                    "asset_name": "OFL-IZACHARIA-L",
+                    "total": 28,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 28,
+                    "score": 998
+                },
+                {
+                    "asset_name": "OFL-TSAKOLVITTA",
+                    "total": 25,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 25,
+                    "score": 998
+                },
+                {
+                    "asset_name": "OFL-MNEWCOMB-L",
+                    "total": 26,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 26,
+                    "score": 998
+                },
+                {
+                    "asset_name": "10.1.10.112",
+                    "total": 1,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 1,
+                    "score": 998
+                },
+                {
+                    "asset_name": "10.1.10.244",
+                    "total": 1,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 1,
+                    "score": 998
+                },
+                {
+                    "asset_name": "10.1.10.55",
+                    "total": 1,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 1,
+                    "score": 998
+                },
+                {
+                    "asset_name": "10.1.10.56",
+                    "total": 1,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 1,
+                    "score": 998
+                },
+                {
+                    "asset_name": "10.1.10.2",
+                    "total": 1,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 1,
+                    "score": 998
+                },
+                {
+                    "asset_name": "10.1.10.172",
+                    "total": 1,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 1,
+                    "score": 998
+                },
+                {
+                    "asset_name": "10.1.10.54",
+                    "total": 1,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 1,
+                    "score": 998
+                },
+                {
+                    "asset_name": "10.1.10.134",
+                    "total": 1,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 1,
+                    "score": 998
+                },
+                {
+                    "asset_name": "10.1.10.222",
+                    "total": 1,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 1,
+                    "score": 998
+                },
+                {
+                    "asset_name": "OFL-LSMITH-L",
+                    "total": 23,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 23,
+                    "score": 999
+                },
+                {
+                    "asset_name": "OFL-SBROCHE-L",
+                    "total": 22,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 22,
+                    "score": 999
+                },
+                {
+                    "asset_name": "10.1.10.88",
+                    "total": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "score": 999
+                },
+                {
+                    "asset_name": "10.1.10.218",
+                    "total": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "score": 999
+                },
+                {
+                    "asset_name": "10.1.10.115",
+                    "total": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "score": 999
+                },
+                {
+                    "asset_name": "10.1.10.184",
+                    "total": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "score": 999
+                },
+                {
+                    "asset_name": "10.1.10.173",
+                    "total": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "score": 999
+                },
+                {
+                    "asset_name": "10.1.10.65",
+                    "total": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "score": 999
+                },
+                {
+                    "asset_name": "10.1.10.69",
+                    "total": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "score": 999
+                },
+                {
+                    "asset_name": "10.1.10.143",
+                    "total": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "score": 999
+                },
+                {
+                    "asset_name": "10.1.10.144",
+                    "total": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "score": 999
+                },
+                {
+                    "asset_name": "10.1.10.138",
+                    "total": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "score": 999
+                },
+                {
+                    "asset_name": "10.1.10.186",
+                    "total": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "score": 999
+                },
+                {
+                    "asset_name": "10.1.10.61",
+                    "total": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "score": 999
+                },
+                {
+                    "asset_name": "10.1.10.126",
+                    "total": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "score": 999
+                },
+                {
+                    "asset_name": "10.1.10.73",
+                    "total": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "score": 999
+                },
+                {
+                    "asset_name": "10.1.10.122",
+                    "total": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "score": 999
+                },
+                {
+                    "asset_name": "10.1.10.250",
+                    "total": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "score": 999
+                },
+                {
+                    "asset_name": "10.1.10.64",
+                    "total": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "score": 999
+                },
+                {
+                    "asset_name": "10.1.10.168",
+                    "total": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "score": 999
+                },
+                {
+                    "asset_name": "10.1.10.192",
+                    "total": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "score": 999
+                },
+                {
+                    "asset_name": "10.1.10.231",
+                    "total": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "score": 999
+                },
+                {
+                    "asset_name": "10.1.10.197",
+                    "total": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "score": 999
+                },
+                {
+                    "asset_name": "10.1.10.53",
+                    "total": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "score": 999
+                }
+            ],
+            "epss_prioritized": [
+                {
+                    "cve": "CVE-2014-3566",
+                    "assets": 2,
+                    "epss_score": 0.94015,
+                    "epss_percentage": "94%"
+                },
+                {
+                    "cve": "CVE-2023-44487",
+                    "assets": 1,
+                    "epss_score": 0.9446,
+                    "epss_percentage": "94%"
+                },
+                {
+                    "cve": "CVE-2013-3900",
+                    "assets": 54,
+                    "epss_score": 0.78065,
+                    "epss_percentage": "78%"
+                },
+                {
+                    "cve": "CVE-2024-38200",
+                    "assets": 12,
+                    "epss_score": 0.5574,
+                    "epss_percentage": "56%"
+                },
+                {
+                    "cve": "CVE-2024-21409",
+                    "assets": 3,
+                    "epss_score": 0.54695,
+                    "epss_percentage": "55%"
+                },
+                {
+                    "cve": "CVE-2025-33053",
+                    "assets": 1,
+                    "epss_score": 0.50282,
+                    "epss_percentage": "50%"
+                },
+                {
+                    "cve": "CVE-2025-33073",
+                    "assets": 1,
+                    "epss_score": 0.4924,
+                    "epss_percentage": "49%"
+                },
+                {
+                    "cve": "CVE-2025-32724",
+                    "assets": 1,
+                    "epss_score": 0.46168,
+                    "epss_percentage": "46%"
+                },
+                {
+                    "cve": "CVE-2024-38189",
+                    "assets": 12,
+                    "epss_score": 0.43662,
+                    "epss_percentage": "44%"
+                },
+                {
+                    "cve": "CVE-2025-26673",
+                    "assets": 1,
+                    "epss_score": 0.44121,
+                    "epss_percentage": "44%"
+                }
+            ]
+        },
+        "execution_info": {
+            "generated_at": "2025-10-09T19:05:15.407535",
+            "data_sources_processed": [
+                "NinjaOne",
+                "Autotask",
+                "ConnectSecure"
+            ],
+            "report_type": "Monthly Customer Report",
+            "processing_time_seconds": 60.8,
+            "next_update": "2025-11-08T19:05:51.260348"
+        }
+    },
+    "DNSFilter": {
+      "charts": {
+        "request_counts": {
+          "total_threats_count": 3381,
+          "total_blocked_requests": 3397
+        },
+        "allowed_vs_blocked_request": [
+          {
+            "date": "2026-04-01",
+            "allowed": 224538,
+            "blocked": 184
+          },
+          {
+            "date": "2026-04-02",
+            "allowed": 211261,
+            "blocked": 367
+          },
+          {
+            "date": "2026-04-03",
+            "allowed": 182723,
+            "blocked": 97
+          },
+          {
+            "date": "2026-04-04",
+            "allowed": 51664,
+            "blocked": 9
+          },
+          {
+            "date": "2026-04-05",
+            "allowed": 67681,
+            "blocked": 3
+          },
+          {
+            "date": "2026-04-06",
+            "allowed": 151334,
+            "blocked": 72
+          },
+          {
+            "date": "2026-04-07",
+            "allowed": 255066,
+            "blocked": 158
+          },
+          {
+            "date": "2026-04-08",
+            "allowed": 260593,
+            "blocked": 165
+          },
+          {
+            "date": "2026-04-09",
+            "allowed": 233882,
+            "blocked": 307
+          },
+          {
+            "date": "2026-04-10",
+            "allowed": 221379,
+            "blocked": 129
+          },
+          {
+            "date": "2026-04-11",
+            "allowed": 78492,
+            "blocked": 17
+          },
+          {
+            "date": "2026-04-12",
+            "allowed": 60086,
+            "blocked": 6
+          },
+          {
+            "date": "2026-04-13",
+            "allowed": 191314,
+            "blocked": 148
+          },
+          {
+            "date": "2026-04-14",
+            "allowed": 196324,
+            "blocked": 113
+          },
+          {
+            "date": "2026-04-15",
+            "allowed": 229520,
+            "blocked": 177
+          },
+          {
+            "date": "2026-04-16",
+            "allowed": 219216,
+            "blocked": 103
+          },
+          {
+            "date": "2026-04-17",
+            "allowed": 165939,
+            "blocked": 101
+          },
+          {
+            "date": "2026-04-18",
+            "allowed": 93949,
+            "blocked": 29
+          },
+          {
+            "date": "2026-04-19",
+            "allowed": 94515,
+            "blocked": 36
+          },
+          {
+            "date": "2026-04-20",
+            "allowed": 180839,
+            "blocked": 135
+          },
+          {
+            "date": "2026-04-21",
+            "allowed": 191855,
+            "blocked": 134
+          },
+          {
+            "date": "2026-04-22",
+            "allowed": 234765,
+            "blocked": 188
+          },
+          {
+            "date": "2026-04-23",
+            "allowed": 225934,
+            "blocked": 152
+          },
+          {
+            "date": "2026-04-24",
+            "allowed": 137672,
+            "blocked": 28
+          },
+          {
+            "date": "2026-04-25",
+            "allowed": 70035,
+            "blocked": 15
+          },
+          {
+            "date": "2026-04-26",
+            "allowed": 58641,
+            "blocked": 13
+          },
+          {
+            "date": "2026-04-27",
+            "allowed": 184547,
+            "blocked": 85
+          },
+          {
+            "date": "2026-04-28",
+            "allowed": 208483,
+            "blocked": 128
+          },
+          {
+            "date": "2026-04-29",
+            "allowed": 234020,
+            "blocked": 253
+          },
+          {
+            "date": "2026-04-30",
+            "allowed": 131513,
+            "blocked": 45
+          }
+        ],
+        "threats_over_time": {
+          "2026-04-01": 179,
+          "2026-04-02": 371,
+          "2026-04-03": 80,
+          "2026-04-04": 9,
+          "2026-04-05": 3,
+          "2026-04-06": 77,
+          "2026-04-07": 164,
+          "2026-04-08": 163,
+          "2026-04-09": 311,
+          "2026-04-10": 141,
+          "2026-04-11": 17,
+          "2026-04-12": 8,
+          "2026-04-13": 148,
+          "2026-04-14": 119,
+          "2026-04-15": 176,
+          "2026-04-16": 99,
+          "2026-04-17": 107,
+          "2026-04-18": 29,
+          "2026-04-19": 36,
+          "2026-04-20": 137,
+          "2026-04-21": 135,
+          "2026-04-22": 198,
+          "2026-04-23": 103,
+          "2026-04-24": 33,
+          "2026-04-25": 16,
+          "2026-04-26": 13,
+          "2026-04-27": 81,
+          "2026-04-28": 125,
+          "2026-04-29": 256,
+          "2026-04-30": 47
+        },
+        "allowed_vs_blocked_threats": [
+          {
+            "date": "2026-04-01",
+            "allowed": 7,
+            "blocked": 172
+          },
+          {
+            "date": "2026-04-02",
+            "allowed": 4,
+            "blocked": 367
+          },
+          {
+            "date": "2026-04-03",
+            "allowed": 1,
+            "blocked": 79
+          },
+          {
+            "date": "2026-04-04",
+            "allowed": 0,
+            "blocked": 9
+          },
+          {
+            "date": "2026-04-05",
+            "allowed": 0,
+            "blocked": 3
+          },
+          {
+            "date": "2026-04-06",
+            "allowed": 5,
+            "blocked": 72
+          },
+          {
+            "date": "2026-04-07",
+            "allowed": 6,
+            "blocked": 158
+          },
+          {
+            "date": "2026-04-08",
+            "allowed": 7,
+            "blocked": 156
+          },
+          {
+            "date": "2026-04-09",
+            "allowed": 17,
+            "blocked": 294
+          },
+          {
+            "date": "2026-04-10",
+            "allowed": 14,
+            "blocked": 127
+          },
+          {
+            "date": "2026-04-11",
+            "allowed": 0,
+            "blocked": 17
+          },
+          {
+            "date": "2026-04-12",
+            "allowed": 3,
+            "blocked": 5
+          },
+          {
+            "date": "2026-04-13",
+            "allowed": 8,
+            "blocked": 140
+          },
+          {
+            "date": "2026-04-14",
+            "allowed": 16,
+            "blocked": 103
+          },
+          {
+            "date": "2026-04-15",
+            "allowed": 19,
+            "blocked": 157
+          },
+          {
+            "date": "2026-04-16",
+            "allowed": 0,
+            "blocked": 99
+          },
+          {
+            "date": "2026-04-17",
+            "allowed": 8,
+            "blocked": 99
+          },
+          {
+            "date": "2026-04-18",
+            "allowed": 0,
+            "blocked": 29
+          },
+          {
+            "date": "2026-04-19",
+            "allowed": 0,
+            "blocked": 36
+          },
+          {
+            "date": "2026-04-20",
+            "allowed": 3,
+            "blocked": 134
+          },
+          {
+            "date": "2026-04-21",
+            "allowed": 6,
+            "blocked": 129
+          },
+          {
+            "date": "2026-04-22",
+            "allowed": 12,
+            "blocked": 186
+          },
+          {
+            "date": "2026-04-23",
+            "allowed": 5,
+            "blocked": 98
+          },
+          {
+            "date": "2026-04-24",
+            "allowed": 5,
+            "blocked": 28
+          },
+          {
+            "date": "2026-04-25",
+            "allowed": 1,
+            "blocked": 15
+          },
+          {
+            "date": "2026-04-26",
+            "allowed": 0,
+            "blocked": 13
+          },
+          {
+            "date": "2026-04-27",
+            "allowed": 3,
+            "blocked": 78
+          },
+          {
+            "date": "2026-04-28",
+            "allowed": 5,
+            "blocked": 120
+          },
+          {
+            "date": "2026-04-29",
+            "allowed": 4,
+            "blocked": 252
+          },
+          {
+            "date": "2026-04-30",
+            "allowed": 2,
+            "blocked": 45
+          }
+        ]
+      }
+    }
+}

@@ -1,0 +1,32 @@
+# Render Blueprint for STAGE environment
+version: "1"
+projects:
+- name: My project
+  environments:
+  - name: Production
+    services:
+    - type: web
+      name: msp_platform-stage
+      runtime: docker
+      repo: https://github.com/Inputiv-LLP/msp_platform
+      branch: master
+      plan: free
+      envVars:
+      - key: CONVERTHUB_API_KEY
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false
+      - key: ENCRYPTION_KEY
+        sync: false
+      - key: DOCS_USERNAME
+        sync: false
+      - key: DOCS_PASSWORD
+        sync: false
+      - key: DEMO_USER_ID
+        sync: false
+      - key: DEFAULT_CREDENTIAL_ID
+        sync: false
+      region: virginia
+      autoDeployTrigger: "off"

@@ -1,0 +1,1517 @@
+================================================================================
+                    MSP PLATFORM RESTRUCTURING MIGRATION PLAN
+================================================================================
+
+Project: Merge msp_endpoints/ and security_reporting_system/ into unified app/
+Branch: restructure
+Date: 2025-12-29
+Status: PLANNING PHASE
+
+================================================================================
+                              TABLE OF CONTENTS
+================================================================================
+
+1. OVERVIEW
+2. DIRECTORY STRUCTURE (GitHub Repo)
+3. DIRECTORY STRUCTURE (Local Development Only)
+4. FILE MAPPING & ALIASING
+5. FILES TO EXCLUDE FROM GITHUB
+6. MERGE STRATEGIES
+7. MIGRATION STEPS (WITH CHECKBOXES)
+8. IMPORT UPDATES REQUIRED
+9. TESTING CHECKLIST
+10. ROLLBACK PLAN
+
+================================================================================
+                                1. OVERVIEW
+================================================================================
+
+GOAL: Create a unified, organized directory structure following modern Python
+      application best practices.
+
+CURRENT STATE:
+  - msp_endpoints/          (35 files - FastAPI web server)
+  - security_reporting_system/  (45 files - Data collection & reporting)
+
+TARGET STATE:
+  - app/                    (Unified application directory)
+  - docs/                   (Documentation)
+  - local/                  (Local-only files - NOT in GitHub)
+  - run.py                  (Entry point)
+
+TOTAL FILES TO MIGRATE: ~60 production files
+IMPORT UPDATES NEEDED: ~200-250 statements
+ESTIMATED TIME: 12-15 hours
+
+================================================================================
+                    2. DIRECTORY STRUCTURE (GitHub Repo)
+================================================================================
+
+MSP_PROJ/
+│
+├── app/                                    # Main application directory
+│   ├── __init__.py                         # NEW
+│   ├── main.py                             # ← msp_endpoints/main.py (FastAPI app)
+│   │
+│   ├── clients/                            # API client modules
+│   │   ├── __init__.py                     # ← security_reporting_system/src/clients/__init__.py
+│   │   ├── api_client.py                   # ← security_reporting_system/src/clients/api_client.py (NinjaOne)
+│   │   ├── autotask_client.py              # ← security_reporting_system/src/clients/autotask_client.py
+│   │   ├── bitdefender_client.py           # ← security_reporting_system/src/clients/bitdefender_client.py
+│   │   ├── connectsecure_client.py         # ← security_reporting_system/src/clients/connectsecure_client.py
+│   │   └── cove_client.py                  # ← security_reporting_system/src/clients/cove_client.py
+│   │
+│   ├── core/                               # Core application components
+│   │   ├── __init__.py                     # NEW
+│   │   │
+│   │   ├── auth/                           # Authentication & authorization
+│   │   │   ├── __init__.py                 # NEW
+│   │   │   ├── dependencies.py             # ← msp_endpoints/dependencies.py
+│   │   │   ├── middleware.py               # ← msp_endpoints/auth.py
+│   │   │   └── utils.py                    # ← security_reporting_system/src/utils/auth.py
+│   │   │
+│   │   ├── config/                         # Configuration management
+│   │   │   ├── __init__.py                 # NEW
+│   │   │   ├── settings.py                 # ← MERGE: msp_endpoints/config.py + security_reporting_system/config/config.py
+│   │   │   └── supabase.py                 # ← security_reporting_system/config/supabase_client.py
+│   │   │
+│   │   └── database/                       # Database services
+│   │       ├── __init__.py                 # NEW
+│   │       └── supabase_services.py        # ← msp_endpoints/supabase_services.py
+│   │
+│   ├── management/                         # Management commands
+│   │   ├── __init__.py                     # NEW
+│   │   └── commands/                       # Command scripts
+│   │       └── __init__.py                 # NEW
+│   │
+│   ├── models/                             # Data models
+│   │   ├── __init__.py                     # NEW
+│   │   └── database.py                     # ← msp_endpoints/models.py
+│   │
+│   ├── processors/                         # Data processors
+│   │   ├── __init__.py                     # ← security_reporting_system/src/processors/__init__.py
+│   │   ├── autotask_processor.py           # ← security_reporting_system/src/processors/autotask_processor.py
+│   │   ├── bitdefender_processor.py        # ← security_reporting_system/src/processors/bitdefender_processor.py
+│   │   ├── connectsecure_processor.py      # ← security_reporting_system/src/processors/connectsecure_processor.py
+│   │   ├── cove_processor.py               # ← security_reporting_system/src/processors/cove_processor.py
+│   │   └── ninjaone_processor.py           # ← security_reporting_system/src/processors/ninjaone_processor.py
+│   │
+│   ├── routes/                             # API routes/endpoints
+│   │   ├── __init__.py                     # NEW (imports all route modules)
+│   │   │
+│   │   ├── admin/                          # Admin management routes
+│   │   │   ├── __init__.py                 # NEW
+│   │   │   ├── clients.py                  # ← msp_endpoints/endpoints/client_management.py
+│   │   │   └── licenses.py                 # ← msp_endpoints/endpoints/license_management.py
+│   │   │
+│   │   ├── clients/                        # Client-facing routes
+│   │   │   ├── __init__.py                 # NEW
+│   │   │   ├── charts.py                   # ← msp_endpoints/endpoints/integration_platform_charts_endpoints.py
+│   │   │   └── users.py                    # ← msp_endpoints/endpoints/user_details.py
+│   │   │
+│   │   ├── compliance/                     # Compliance routes
+│   │   │   ├── __init__.py                 # NEW
+│   │   │   ├── status.py                   # ← msp_endpoints/endpoints/all_complaince_status.py
+│   │   │   └── status_post.py              # ← msp_endpoints/endpoints/complaince_status_post_endpoints.py
+│   │   │
+│   │   └── security/                       # Security routes
+│   │       ├── __init__.py                 # NEW
+│   │       ├── cache_test.py               # ← msp_endpoints/endpoints/cache_test_endpoints.py
+│   │       ├── dummy.json                  # ← msp_endpoints/endpoints/dummy.json (sample data)
+│   │       ├── issues.py                   # ← msp_endpoints/endpoints/security_issues.py
+│   │       ├── mfa.py                      # ← msp_endpoints/endpoints/mfa_status.py
+│   │       ├── months.py                   # ← msp_endpoints/endpoints/month_selector_endpoints.py
+│   │       ├── reports.py                  # ← msp_endpoints/endpoints/report_endpoint.py
+│   │       └── secure_score.py             # ← msp_endpoints/endpoints/microsoft_secure_score.py
+│   │
+│   ├── schemas/                            # API schemas (Pydantic models)
+│   │   ├── __init__.py                     # NEW
+│   │   └── api.py                          # ← msp_endpoints/schemas.py
+│   │
+│   ├── services/                           # Business logic services
+│   │   ├── __init__.py                     # NEW
+│   │   │
+│   │   ├── cache/                          # Cache management
+│   │   │   ├── __init__.py                 # NEW
+│   │   │   ├── cache_services.py           # ← msp_endpoints/cache_services.py
+│   │   │   └── cache_write_services.py     # ← msp_endpoints/cache_write_services.py
+│   │   │
+│   │   ├── compliance/                     # Compliance services
+│   │   │   ├── __init__.py                 # NEW
+│   │   │   └── fix_functions.py            # ← msp_endpoints/fix_compliance_functions.py
+│   │   │
+│   │   ├── encryption/                     # Encryption services
+│   │   │   ├── __init__.py                 # NEW
+│   │   │   └── manager.py                  # ← MERGE: msp_endpoints/crypto_utils.py + security_reporting_system/src/services/encryption_manager.py
+│   │   │
+│   │   ├── integrations/                   # Integration services
+│   │   │   ├── __init__.py                 # NEW
+│   │   │   ├── orchestrator.py             # ← security_reporting_system/src/main.py (SecurityAssessmentOrchestrator class ONLY)
+│   │   │   └── wrappers.py                 # ← msp_endpoints/endpoint_wrappers.py
+│   │   │
+│   │   └── organizations/                  # Organization services
+│   │       ├── __init__.py                 # NEW
+│   │       ├── matcher.py                  # ← security_reporting_system/src/utils/organization_matcher.py
+│   │       ├── service.py                  # ← security_reporting_system/src/services/organization_service.py
+│   │       └── sync.py                     # ← security_reporting_system/src/services/organization_sync.py
+│   │
+│   └── utils/                              # Utility functions
+│       ├── __init__.py                     # NEW
+│       ├── common.py                       # ← msp_endpoints/utils.py
+│       ├── debug.py                        # ← security_reporting_system/src/utils/debug.py
+│       ├── frontend_transformer.py         # ← security_reporting_system/src/utils/frontend_transformer.py
+│       └── month_selector.py               # ← security_reporting_system/src/utils/month_selector.py
+│
+├── docs/                                   # Documentation
+│   ├── database/                           # Database documentation
+│   │   └── schema.sql                      # ← msp_endpoints/endpoints/schema.sql
+│   └── README.md                           # NEW (API documentation)
+│
+├── .gitignore                              # Updated with exclusions
+├── pyproject.toml                          # NEW (Python packaging config)
+├── README.md                               # Updated project README
+├── requirements.txt                        # Python dependencies
+└── run.py                                  # ← msp_endpoints/run.py (updated imports)
+
+================================================================================
+                3. DIRECTORY STRUCTURE (Local Development Only)
+================================================================================
+
+These files/folders exist LOCALLY in /local/ folder but are NOT pushed to GitHub:
+
+MSP_PROJ/
+│
+└── local/                                  # ALL LOCAL FILES (NOT IN REPO)
+    │
+    ├── big_cache_scheduler.py              # Scheduler script
+    ├── big_cache_scheduler.log             # Scheduler logs
+    ├── big_cache_scheduler_summary.txt     # Scheduler summary
+    ├── report_scheduler.py                 # Report scheduler
+    ├── report_scheduler.log                # Report scheduler logs
+    ├── report_scheduler_config.py          # Report scheduler config
+    ├── scheduler_config.py                 # Configure scheduler script
+    │
+    ├── add_bitdefender_creds.py            # Credential management
+    ├── add_cove_creds.py                   # Credential management
+    ├── decrypt_credentials.py              # Credential management
+    ├── encrypt_existing_integration_credentials.py  # Credential management
+    ├── update_credentials.py               # Credential management (from msp_endpoints)
+    │
+    ├── debug_auth.py                       # Testing/debugging (from msp_endpoints)
+    ├── debug_raw_data_fetcher.py           # Testing/debugging (from security_reporting_system/src)
+    ├── ninjaone_endpoint_tester.py         # Testing
+    ├── test_autotask_creds.py              # Testing
+    ├── test_connect_secure.py              # Testing
+    ├── test_cove_endpoints.py              # Testing
+    ├── test_cove_integration.py            # Testing
+    ├── test_integration_decryption.py      # Testing
+    ├── test_credentials_fetch.py           # Testing (from msp_endpoints)
+    ├── test.py                             # Unit tests (from msp_endpoints/test.py)
+    ├── test_organizations.py               # Unit tests (from security_reporting_system/tests/test.py)
+    │
+    ├── bitdefender_matcher.py              # Matcher scripts
+    ├── bitdefender_fastapi.py              # Development server
+    │
+    ├── API_Field_Mapping_Explanation.md   # Documentation
+    ├── BITDEFENDER_COMPANY_ID_FLOW.txt    # Documentation
+    ├── BITDEFENDER_INTEGRATION_PLAN.txt   # Documentation
+    ├── COVE_INTEGRATION_IMPLEMENTATION_GUIDE.txt  # Documentation
+    ├── RECOMMENDATION_RULES_DOCUMENT.md   # Documentation
+    │
+    ├── ninjaone_devices_ALL_ORGS_warranty_test.json  # Sample data
+    ├── ninjaone_devices_org63_warranty_test.json     # Sample data
+    ├── cove_account_stats_response.json   # Sample data
+    ├── cove_auth_response.json            # Sample data
+    ├── cove_partners_response.json        # Sample data
+    ├── response_*.json                    # Sample data (all response files)
+    ├── *.csv                              # Sample data (all CSV files)
+    └── *.pdf                              # Generated reports (output)
+
+================================================================================
+                        4. FILE MAPPING & ALIASING
+================================================================================
+
+CONFIGURATION FILES TO UNIFY:
+
+A. .gitignore FILES (merge into one at root):
+   - C:\msp_platform_inputiv\.gitignore
+   - C:\msp_platform_inputiv\msp_endpoints\.gitignore
+   - C:\msp_platform_inputiv\security_reporting_system\.gitignore
+   → Result: ONE unified .gitignore at root (see section 5)
+
+B. .env FILES (merge into one at root):
+   - C:\msp_platform_inputiv\msp_endpoints\.env (USE AS BASE)
+   - C:\msp_platform_inputiv\security_reporting_system\.env (merge unique vars)
+   → Result: ONE unified .env at root
+   → IMPORTANT: .env MUST NOT be committed to git (already in .gitignore)
+
+---
+
+CORRECTED ALIASING (from your list with fixes):
+
+1.  security_reporting_system/src/services/encryption_manager.py
+    → app/services/encryption/manager.py
+    MERGE WITH: msp_endpoints/crypto_utils.py
+
+2.  security_reporting_system/src/services/organization_service.py
+    → app/services/organizations/service.py
+
+3.  security_reporting_system/src/services/organization_sync.py
+    → app/services/organizations/sync.py
+
+4.  security_reporting_system/src/utils/auth.py
+    → app/core/auth/utils.py
+
+5.  security_reporting_system/src/utils/organization_matcher.py
+    → app/services/organizations/matcher.py
+
+6.  security_reporting_system/config/config.py
+    → app/core/config/settings.py
+    MERGE WITH: msp_endpoints/config.py
+
+7.  security_reporting_system/config/supabase_client.py
+    → app/core/config/supabase.py
+
+8.  msp_endpoints/endpoints/client_management.py
+    → app/routes/admin/clients.py
+
+9.  msp_endpoints/endpoints/license_management.py
+    → app/routes/admin/licenses.py
+
+10. msp_endpoints/endpoints/integration_platform_charts_endpoints.py
+    → app/routes/clients/charts.py
+
+11. msp_endpoints/endpoints/user_details.py
+    → app/routes/clients/users.py
+
+12. msp_endpoints/endpoints/all_complaince_status.py
+    → app/routes/compliance/status.py
+
+13. msp_endpoints/endpoints/complaince_status_post_endpoints.py
+    → app/routes/compliance/status_post.py
+
+14. msp_endpoints/endpoints/cache_test_endpoints.py
+    → app/routes/security/cache_test.py
+
+15. msp_endpoints/endpoints/security_issues.py
+    → app/routes/security/issues.py
+
+16. msp_endpoints/endpoints/mfa_status.py
+    → app/routes/security/mfa.py
+
+17. msp_endpoints/endpoints/month_selector_endpoints.py
+    → app/routes/security/months.py
+
+18. msp_endpoints/endpoints/report_endpoint.py
+    → app/routes/security/reports.py
+
+19. msp_endpoints/endpoints/microsoft_secure_score.py
+    → app/routes/security/secure_score.py
+
+20. msp_endpoints/schemas.py
+    → app/schemas/api.py
+    (CORRECTED: was app/routes/schemas/api.py)
+
+21. msp_endpoints/fix_compliance_functions.py
+    → app/services/compliance/fix_functions.py
+    (CORRECTED: was app/routes/services/compliance/)
+
+22. msp_endpoints/crypto_utils.py
+    → app/services/encryption/manager.py
+    (CORRECTED: was app/routes/services/encryption/)
+    MERGE WITH: security_reporting_system/src/services/encryption_manager.py
+
+23. security_reporting_system/src/main.py (SecurityAssessmentOrchestrator class)
+    → app/services/integrations/orchestrator.py
+    (CORRECTED: was app/routes/services/integrations/)
+
+24. msp_endpoints/auth.py
+    → app/core/auth/middleware.py
+
+25. msp_endpoints/models.py
+    → app/models/database.py
+
+26. msp_endpoints/endpoint_wrappers.py
+    → app/services/integrations/wrappers.py
+    (CORRECTED: was app/integrations/)
+
+27. msp_endpoints/utils.py
+    → app/utils/common.py
+
+28. msp_endpoints/dependencies.py
+    → app/core/auth/dependencies.py
+
+29. msp_endpoints/supabase_services.py
+    → app/core/database/supabase_services.py
+
+30. security_reporting_system/src/utils/debug.py
+    → app/utils/debug.py
+
+31. security_reporting_system/src/utils/frontend_transformer.py
+    → app/utils/frontend_transformer.py
+
+32. security_reporting_system/src/utils/month_selector.py
+    → app/utils/month_selector.py
+
+33. msp_endpoints/endpoints/dummy.json
+    → app/routes/security/dummy.json
+
+34. msp_endpoints/endpoints/schema.sql
+    → docs/database/schema.sql
+
+35. msp_endpoints/run.py
+    → run.py (update imports)
+
+36. msp_endpoints/main.py
+    → app/main.py (update imports)
+
+MISSING FILES NOW INCLUDED:
+- msp_endpoints/debug_auth.py → local/debug_auth.py (LOCAL ONLY)
+- security_reporting_system/src/debug_raw_data_fetcher.py → local/debug_raw_data_fetcher.py (LOCAL ONLY)
+- msp_endpoints/endpoints/schema.sql → docs/database/schema.sql (IN REPO)
+- msp_endpoints/endpoints/dummy.json → app/routes/security/dummy.json (IN REPO)
+- msp_endpoints/test.py → local/test.py (LOCAL ONLY)
+- security_reporting_system/tests/test.py → local/test_organizations.py (LOCAL ONLY)
+
+================================================================================
+                    5. FILES TO EXCLUDE FROM GITHUB
+================================================================================
+
+UNIFIED .gitignore (MERGES ALL EXISTING .gitignore FILES):
+
+Current .gitignore files to merge:
+  - C:\msp_platform_inputiv\.gitignore
+  - C:\msp_platform_inputiv\msp_endpoints\.gitignore
+  - C:\msp_platform_inputiv\security_reporting_system\.gitignore
+
+CREATE ONE UNIFIED .gitignore AT ROOT WITH:
+
+# ================================================================================
+#                         UNIFIED .gitignore FOR MSP_PROJ
+# ================================================================================
+
+# ===== LOCAL DEVELOPMENT FILES =====
+# All local-only files are in /local/ folder
+local/
+
+# ===== ENVIRONMENT VARIABLES =====
+.env
+.env.local
+.env.*.local
+*.env
+**/.env
+msp_endpoints/.env
+security_reporting_system/.env
+
+# ===== NGROK (TUNNELING TOOL) =====
+# Exclude entire ngrok directory and all variations
+ngrok/
+ngrok-v3-stable-windows-amd64/
+**/ngrok*/
+ngrok.exe
+ngrok
+
+# ===== PYTHON CACHE & COMPILED FILES =====
+__pycache__/
+*.py[cod]
+*.pyc
+*$py.class
+*.so
+.Python
+*.pyo
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ===== VIRTUAL ENVIRONMENTS =====
+.venv/
+venv/
+ENV/
+env/
+
+# ===== IDEs & EDITORS =====
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+security_reporting_system/.idea
+
+# ===== PROJECT-SPECIFIC FILES (from existing .gitignore) =====
+CACHE_TEST_GUIDE_UPDATED.md
+update_credentials.py
+test.py
+ninja_endpoint_tester.py
+ninjaone_endpoint_tester.py
+msp_endpoints/update_credentials.py
+msp_endpoints/test.py
+security_reporting_system/ninja_endpoint_tester.py
+
+# ===== OUTPUT & LOGS =====
+*.log
+*.log.*
+output/
+*.pdf
+
+# ===== TEMPORARY FILES =====
+*.tmp
+*.bak
+temp/
+tmp/
+
+# ===== OS-SPECIFIC =====
+Thumbs.db
+desktop.ini
+
+# ===== DISTRIBUTION / PACKAGING =====
+build/
+dist/
+*.egg-info/
+
+================================================================================
+                        6. MERGE STRATEGIES
+================================================================================
+
+TWO FILES REQUIRE MANUAL MERGING:
+
+---
+MERGE 1: Encryption Manager
+---
+SOURCE FILES:
+  - msp_endpoints/crypto_utils.py (87 lines)
+  - security_reporting_system/src/services/encryption_manager.py (219 lines)
+
+TARGET FILE:
+  - app/services/encryption/manager.py
+
+STRATEGY:
+  1. Use encryption_manager.py as BASE (keep all its methods)
+  2. ADD backward compatibility methods from crypto_utils.py:
+     - encrypt_secret() → alias for encrypt_field()
+     - decrypt_secret() → alias for decrypt_field()
+  3. ADD global instance and convenience functions:
+     - encryption_manager = EncryptionManager()
+     - encrypt_client_secret()
+     - decrypt_client_secret()
+
+RESULT: One unified file with all features, backward compatible
+
+---
+MERGE 2: Config Settings
+---
+SOURCE FILES:
+  - msp_endpoints/config.py
+  - security_reporting_system/config/config.py
+
+TARGET FILE:
+  - app/core/config/settings.py
+
+STRATEGY:
+  1. Identify overlapping settings (SUPABASE_URL, ENCRYPTION_KEY, etc.)
+  2. Merge unique settings from each file
+  3. Create unified config class that serves both systems
+  4. Use Pydantic BaseSettings for validation
+
+---
+SPLIT 1: Main.py CLI Functions
+---
+SOURCE FILE:
+  - security_reporting_system/src/main.py (848 lines)
+
+TARGET FILES:
+  - app/services/integrations/orchestrator.py (lines 162-593: SecurityAssessmentOrchestrator class)
+  - [CLI parts go to local scripts, NOT in repo]
+
+STRATEGY:
+  1. Extract SecurityAssessmentOrchestrator class → orchestrator.py
+  2. Remove all CLI code (argparse, main() function)
+  3. Class can be imported by both web API and local CLI scripts
+
+================================================================================
+                    7. MIGRATION STEPS (WITH CHECKBOXES)
+================================================================================
+
+PHASE 1: PREPARATION & CLEANUP
+-------------------------------
+[✓ ] 1.1  Verify you're on 'restructure' branch
+         Command: git branch
+         Expected: * restructure
+
+[✓ ] 1.2  Create unified .gitignore file at root
+         Action: 1. Copy the content from section 5 above (UNIFIED .gitignore)
+                 2. Replace the content of C:\msp_platform_inputiv\.gitignore
+                 3. This merges all existing .gitignore files into one
+
+[✓ ] 1.3  Remove old .gitignore files from subdirectories
+         Command: git rm msp_endpoints/.gitignore
+                  git rm security_reporting_system/.gitignore
+                  (Note: .venv/.gitignore and .idea/.gitignore stay, they're auto-generated)
+
+[ ✓] 1.4  Commit unified .gitignore
+         Command: git add .gitignore
+                  git commit -m "chore: create unified .gitignore (merges all existing .gitignore files)"
+
+[✓ ] 1.5  Create unified .env file at root
+         Action: 1. Copy msp_endpoints/.env to root level (.env)
+                 2. Review security_reporting_system/.env for any unique variables
+                 3. Add any unique variables from security_reporting_system/.env to root .env
+                 4. Verify all required environment variables are present
+         Command: cp msp_endpoints/.env .env
+                  (Then manually review and merge any unique vars)
+
+[✓ ] 1.6  Remove old .env files from subdirectories (IMPORTANT: DO NOT COMMIT .env)
+         Action: 1. Delete msp_endpoints/.env (local file, already in .gitignore)
+                 2. Delete security_reporting_system/.env (local file, already in .gitignore)
+                 3. DO NOT add .env to git (it's already in .gitignore)
+         Note: .env files should NEVER be committed to git for security reasons
+
+[ ✓] 1.7  Remove ngrok from tracking
+         Command: git rm -r --cached msp_endpoints/ngrok-v3-stable-windows-amd64/
+                  git commit -m "chore: remove ngrok binary from repository"
+
+[✓] 1.8  Push initial changes
+         Command: git push origin restructure
+
+
+PHASE 2: CREATE NEW DIRECTORY STRUCTURE
+----------------------------------------
+[✓] 2.1  Create all app/ subdirectories
+         Commands (Windows PowerShell):
+         mkdir app\clients
+         mkdir app\core\auth
+         mkdir app\core\config
+         mkdir app\core\database
+         mkdir app\management\commands
+         mkdir app\models
+         mkdir app\processors
+         mkdir app\routes\admin
+         mkdir app\routes\clients
+         mkdir app\routes\compliance
+         mkdir app\routes\security
+         mkdir app\schemas
+         mkdir app\services\cache
+         mkdir app\services\compliance
+         mkdir app\services\encryption
+         mkdir app\services\integrations
+         mkdir app\services\organizations
+         mkdir app\utils
+
+[✓] 2.2  Create docs/ subdirectories
+         Command (Windows PowerShell):
+         mkdir docs\database
+
+[✓] 2.3  Create all __init__.py files
+         Commands (Windows PowerShell):
+         New-Item -ItemType File -Path "app\__init__.py"
+         New-Item -ItemType File -Path "app\clients\__init__.py"
+         New-Item -ItemType File -Path "app\core\__init__.py"
+         New-Item -ItemType File -Path "app\core\auth\__init__.py"
+         New-Item -ItemType File -Path "app\core\config\__init__.py"
+         New-Item -ItemType File -Path "app\core\database\__init__.py"
+         New-Item -ItemType File -Path "app\management\__init__.py"
+         New-Item -ItemType File -Path "app\management\commands\__init__.py"
+         New-Item -ItemType File -Path "app\models\__init__.py"
+         New-Item -ItemType File -Path "app\processors\__init__.py"
+         New-Item -ItemType File -Path "app\routes\__init__.py"
+         New-Item -ItemType File -Path "app\routes\admin\__init__.py"
+         New-Item -ItemType File -Path "app\routes\clients\__init__.py"
+         New-Item -ItemType File -Path "app\routes\compliance\__init__.py"
+         New-Item -ItemType File -Path "app\routes\security\__init__.py"
+         New-Item -ItemType File -Path "app\schemas\__init__.py"
+         New-Item -ItemType File -Path "app\services\__init__.py"
+         New-Item -ItemType File -Path "app\services\cache\__init__.py"
+         New-Item -ItemType File -Path "app\services\compliance\__init__.py"
+         New-Item -ItemType File -Path "app\services\encryption\__init__.py"
+         New-Item -ItemType File -Path "app\services\integrations\__init__.py"
+         New-Item -ItemType File -Path "app\services\organizations\__init__.py"
+         New-Item -ItemType File -Path "app\utils\__init__.py"
+
+         OR use this one-liner to create all __init__.py files at once:
+         @("app", "app\clients", "app\core", "app\core\auth", "app\core\config", "app\core\database", "app\management", "app\management\commands", "app\models", "app\processors", "app\routes", "app\routes\admin", "app\routes\clients", "app\routes\compliance", "app\routes\security", "app\schemas", "app\services", "app\services\cache", "app\services\compliance", "app\services\encryption", "app\services\integrations", "app\services\organizations", "app\utils") | ForEach-Object { New-Item -ItemType File -Path "$_\__init__.py" -Force }
+
+[✓] 2.4  Commit directory structure
+         Command: git add app/ docs/
+                  git commit -m "feat: create new unified directory structure"
+                  git push
+
+
+PHASE 3: MOVE CLIENT MODULES
+-----------------------------
+[✓] 3.1  Move clients/__init__.py
+         Command: git mv security_reporting_system/src/clients/__init__.py app/clients/
+
+[✓] 3.2  Move api_client.py (NinjaOne)
+         Command: git mv security_reporting_system/src/clients/api_client.py app/clients/
+
+[✓] 3.3  Move autotask_client.py
+         Command: git mv security_reporting_system/src/clients/autotask_client.py app/clients/
+
+[✓] 3.4  Move bitdefender_client.py
+         Command: git mv security_reporting_system/src/clients/bitdefender_client.py app/clients/
+
+[✓] 3.5  Move connectsecure_client.py
+         Command: git mv security_reporting_system/src/clients/connectsecure_client.py app/clients/
+
+[✓] 3.6  Move cove_client.py
+         Command: git mv security_reporting_system/src/clients/cove_client.py app/clients/
+
+[✓] 3.7  Commit client modules
+         Command: git commit -m "refactor: move client modules to app/clients/"
+                  git push
+
+
+PHASE 4: MOVE PROCESSOR MODULES
+--------------------------------
+[✓] 4.1  Move processors/__init__.py
+         Command: git mv security_reporting_system/src/processors/__init__.py app/processors/
+
+[✓] 4.2  Move autotask_processor.py
+         Command: git mv security_reporting_system/src/processors/autotask_processor.py app/processors/
+
+[✓] 4.3  Move bitdefender_processor.py
+         Command: git mv security_reporting_system/src/processors/bitdefender_processor.py app/processors/
+
+[✓] 4.4  Move connectsecure_processor.py
+         Command: git mv security_reporting_system/src/processors/connectsecure_processor.py app/processors/
+
+[✓] 4.5  Move cove_processor.py
+         Command: git mv security_reporting_system/src/processors/cove_processor.py app/processors/
+
+[✓] 4.6  Move ninjaone_processor.py
+         Command: git mv security_reporting_system/src/processors/ninjaone_processor.py app/processors/
+
+[✓] 4.7  Commit processor modules
+         Command: git commit -m "refactor: move processor modules to app/processors/"
+                  git push
+
+
+PHASE 5: MOVE ROUTE/ENDPOINT MODULES
+-------------------------------------
+[✓] 5.1  Move admin routes
+         Command: git mv msp_endpoints/endpoints/client_management.py app/routes/admin/clients.py
+                  git mv msp_endpoints/endpoints/license_management.py app/routes/admin/licenses.py
+
+[✓] 5.2  Move client routes
+         Command: git mv msp_endpoints/endpoints/integration_platform_charts_endpoints.py app/routes/clients/charts.py
+                  git mv msp_endpoints/endpoints/user_details.py app/routes/clients/users.py
+
+[✓] 5.3  Move compliance routes
+         Command: git mv msp_endpoints/endpoints/all_complaince_status.py app/routes/compliance/status.py
+                  git mv msp_endpoints/endpoints/complaince_status_post_endpoints.py app/routes/compliance/status_post.py
+
+[✓] 5.4  Move security routes
+         Command: git mv msp_endpoints/endpoints/cache_test_endpoints.py app/routes/security/cache_test.py
+                  git mv msp_endpoints/endpoints/security_issues.py app/routes/security/issues.py
+                  git mv msp_endpoints/endpoints/mfa_status.py app/routes/security/mfa.py
+                  git mv msp_endpoints/endpoints/month_selector_endpoints.py app/routes/security/months_selector.py
+                  git mv msp_endpoints/endpoints/report_endpoint.py app/routes/security/reports.py
+                  git mv msp_endpoints/endpoints/microsoft_secure_score.py app/routes/security/secure_score.py
+
+[✓] 5.5  Move dummy.json (sample data)
+         Command: git mv msp_endpoints/endpoints/dummy.json app/routes/security/
+
+[✓] 5.6  Commit route modules
+         Command: git commit -m "refactor: reorganize endpoint modules into app/routes/"
+                  git push
+
+
+PHASE 6: MOVE SERVICE MODULES
+------------------------------
+[✓] 6.1  Move cache services
+         Command: git mv msp_endpoints/cache_services.py app/services/cache/
+                  git mv msp_endpoints/cache_write_services.py app/services/cache/
+
+[✓] 6.2  Move compliance services
+         Command: git mv msp_endpoints/fix_compliance_functions.py app/services/compliance/fix_functions.py
+
+[✓] 6.3  Move integration wrappers
+         Command: git mv msp_endpoints/endpoint_wrappers.py app/services/integrations/wrappers.py
+
+[✓] 6.4  Move organization services
+         Command: git mv security_reporting_system/src/services/organization_service.py app/services/organizations/service.py
+                  git mv security_reporting_system/src/services/organization_sync.py app/services/organizations/sync.py
+                  git mv security_reporting_system/src/utils/organization_matcher.py app/services/organizations/matcher.py
+
+[✓] 6.5  Commit service modules
+         Command: git commit -m "refactor: move service modules to app/services/"
+                  git push
+
+
+PHASE 7: MOVE CORE MODULES
+---------------------------
+[✓] 7.1  Move auth modules
+         Command: git mv msp_endpoints/dependencies.py app/core/auth/
+                  git mv msp_endpoints/auth.py app/core/auth/middleware.py
+                  git mv security_reporting_system/src/utils/auth.py app/core/auth/utils.py
+
+[✓] 7.2  Move config modules (prepare for merge)
+
+         Command: cp msp_endpoints/config.py app/core/config/settings.py (here we need to merge seeting.py and setting_old.py )
+                  cp security_reporting_system/config/config.py app/core/config/settings_old.py
+                  git mv security_reporting_system/config/supabase_client.py app/core/config/supabase.py
+
+[✓] 7.3  Move database modules
+         Command: git mv msp_endpoints/supabase_services.py app/core/database/
+
+[✓] 7.4  Commit core modules
+         Command: git commit -m "refactor: move core modules (auth, config, database)"
+                  git push
+
+
+PHASE 8: MOVE UTILITY MODULES
+------------------------------
+[ ✓] 8.1  Move utils modules
+         Command: git mv msp_endpoints/utils.py app/utils/common.py
+                  git mv security_reporting_system/src/utils/debug.py app/utils/
+                  git mv security_reporting_system/src/utils/frontend_transformer.py app/utils/
+                  git mv security_reporting_system/src/utils/month_selector.py app/utils/
+
+[ ✓] 8.2  Commit utility modules
+         Command: git commit -m "refactor: move utility modules to app/utils/"
+                  git push
+
+
+PHASE 9: MOVE MODELS & SCHEMAS
+-------------------------------
+[ ✓] 9.1  Move models
+         Command: git mv msp_endpoints/models.py app/models/database.py
+
+[✓ ] 9.2  Move schemas
+         Command: git mv msp_endpoints/schemas.py app/schemas/api.py
+
+[ ✓] 9.3  Commit models and schemas
+         Command: git commit -m "refactor: move models and schemas"
+                  git push
+
+
+PHASE 10: MOVE DOCUMENTATION
+-----------------------------
+[✓] 10.1 Move schema.sql
+         Command: git mv msp_endpoints/endpoints/schema.sql docs/database/
+
+[✓] 10.2 Commit documentation
+         Command: git commit -m "docs: move database schema to docs/database/"
+                  git push
+
+
+PHASE 11: MERGE ENCRYPTION FILES
+---------------------------------
+[✓ ] 11.1 Copy both encryption files to temp location
+         Command: cp msp_endpoints/crypto_utils.py crypto_utils_backup.py
+                  cp security_reporting_system/src/services/encryption_manager.py encryption_manager_backup.py
+
+[✓] 11.2 Create merged encryption manager
+         Action: Manually create app/services/encryption/manager.py
+                 (Follow MERGE STRATEGY from section 6)
+
+[ ✓] 11.3 Test merged encryption manager
+         Action: Create test script to verify both old import patterns work
+
+[ ✓] 11.4 Commit merged encryption manager
+         Command: git add app/services/encryption/manager.py
+                  git commit -m "refactor: merge crypto_utils and encryption_manager"
+                  git push
+
+
+PHASE 11.5 (EXCEPTION): CREATE LOCAL DIRECTORY & MOVE LOCAL FILES
+-------------------------------------------------------------------
+NOTE: These files stay on your local disk only and are NOT pushed to GitHub
+      The .gitignore already excludes the entire /local/ folder
+
+[✓ ] 11.5.1 Create local/ directory
+         Command (Windows PowerShell): mkdir local
+
+[ ✓] 11.5.2 Move scheduler files to local/
+         Commands:
+         Move-Item -Path "msp_endpoints\big_cache_scheduler.py" -Destination "local\"
+         Move-Item -Path "msp_endpoints\big_cache_scheduler.log" -Destination "local\"
+         Move-Item -Path "msp_endpoints\big_cache_scheduler_summary.txt" -Destination "local\"
+         Move-Item -Path "msp_endpoints\scheduler_config.py" -Destination "local\"
+
+[ ✓] 11.5.3 Move security_reporting_system local files to local/
+         Commands:
+         Move-Item -Path "security_reporting_system\add_bitdefender_creds.py" -Destination "local\"
+         Move-Item -Path "security_reporting_system\add_cove_creds.py" -Destination "local\"
+         Move-Item -Path "security_reporting_system\API_Field_Mapping_Explanation.md" -Destination "local\"
+         Move-Item -Path "security_reporting_system\bitdefender_fastapi.py" -Destination "local\"
+         Move-Item -Path "security_reporting_system\bitdefender_matcher.py" -Destination "local\"
+         Move-Item -Path "security_reporting_system\decrypt_credentials.py" -Destination "local\"
+         Move-Item -Path "security_reporting_system\encrypt_existing_integration_credentials.py" -Destination "local\"
+         Move-Item -Path "security_reporting_system\get_cove_partner_id.py" -Destination "local\"
+         Move-Item -Path "security_reporting_system\main.py" -Destination "local\"
+         Move-Item -Path "security_reporting_system\ninjaone_endpoint_tester.py" -Destination "local\"
+         Move-Item -Path "security_reporting_system\RECOMMENDATION_RULES_DOCUMENT.md" -Destination "local\"
+         Move-Item -Path "security_reporting_system\test_autotask_creds.py" -Destination "local\"
+         Move-Item -Path "security_reporting_system\test_connect_secure.py" -Destination "local\"
+         Move-Item -Path "security_reporting_system\test_cove_endpoints.py" -Destination "local\"
+         Move-Item -Path "security_reporting_system\test_cove_integration.py" -Destination "local\"
+         Move-Item -Path "security_reporting_system\test_integration_decryption.py" -Destination "local\"
+
+[ ✓] 11.5.4 Move scheduler files if they exist in security_reporting_system/
+         Commands (run only if files exist):
+         Move-Item -Path "security_reporting_system\scheduler\report_scheduler.py" -Destination "local\" -ErrorAction SilentlyContinue
+         Move-Item -Path "security_reporting_system\scheduler\report_scheduler.log" -Destination "local\" -ErrorAction SilentlyContinue
+         Move-Item -Path "security_reporting_system\scheduler\report_scheduler_config.py" -Destination "local\" -ErrorAction SilentlyContinue
+
+[ ✓] 11.5.5 Move test files to local/
+         Commands:
+         Move-Item -Path "msp_endpoints\test_credentials_fetch.py" -Destination "local\"
+         Move-Item -Path "msp_endpoints\debug_auth.py" -Destination "local\" -ErrorAction SilentlyContinue
+
+[ ✓] 11.5.6 Verify .gitignore excludes local/
+         Action: Verify that .gitignore contains "local/" pattern (should already be there from Phase 1)
+         Command: grep "local/" .gitignore
+
+[✓ ] 11.5.7 Check git status to confirm local files are ignored
+         Command: git status
+         Expected: The local/ folder should NOT appear in untracked files
+
+NOTE: DO NOT commit or push local files - they stay on your machine only!
+      The /local/ directory is already in .gitignore from Phase 1
+
+
+PHASE 12: MERGE CONFIG FILES
+-----------------------------
+[ ✓] 12.1 Analyze both config files
+         Action: Identify overlapping and unique settings
+
+[✓ ] 12.2 Create merged config
+         Action: Manually create app/core/config/settings.py
+                 (Follow MERGE STRATEGY from section 6)
+
+[✓ ] 12.3 Remove temporary config file
+         Command: rm app/core/config/settings_old.py
+
+[✓ ] 12.4 Commit merged config
+         Command: git add app/core/config/settings.py
+                  git commit -m "refactor: merge config files into unified settings"
+                  git push
+
+
+PHASE 13: SPLIT MAIN.PY & CREATE ORCHESTRATOR
+----------------------------------------------
+[✓] 13.1 Create orchestrator from main.py
+         Action: Extract SecurityAssessmentOrchestrator class (lines 162-593)
+                 Save to: app/services/integrations/orchestrator.py
+
+[✓] 13.2 Extract CLI tool from main.py
+         Action: Extract main() CLI function (lines 596-848)
+                 Save to: app/management/commands/cli_generate_report.py
+
+[✓] 13.3 Commit orchestrator and CLI
+         Command: git add app/services/integrations/orchestrator.py
+                  git add app/management/commands/cli_generate_report.py
+                  git commit -m "refactor: extract SecurityAssessmentOrchestrator and CLI from main.py"
+                  git push
+
+================================================================================
+                    IMPORTANT: COMMAND-LINE USAGE CHANGES
+================================================================================
+
+** OLD COMMAND (security_reporting_system/src/main.py): **
+
+    python src/main.py --account-id <ACCOUNT_ID> --org-id <ORG_ID> --month "november_2025" --output frontend
+
+** NEW COMMAND (app/management/commands/cli_generate_report.py): **
+
+    # Method 1: Using Python module syntax (recommended)
+    python -m app.management.commands.cli_generate_report --account-id <ACCOUNT_ID> --org-id <ORG_ID> --month "november_2025" --output frontend
+
+    # Method 2: Direct script execution
+    python app/management/commands/cli_generate_report.py --account-id <ACCOUNT_ID> --org-id <ORG_ID> --month "november_2025" --output frontend
+
+** ALL CLI FEATURES PRESERVED: **
+    ✓ --output json          → Generate full JSON report
+    ✓ --output frontend      → Generate frontend-optimized JSON
+    ✓ --output pdf           → Generate PDF report
+    ✓ --output both          → Generate both JSON and PDF
+    ✓ --test-connections     → Test all API connections
+    ✓ --list-months          → List available report months
+    ✓ --account-id & --org-id → NEW credential system
+    ✓ --credential-id        → DEPRECATED (still works for backward compatibility)
+
+** WHAT'S LEFT IN ORIGINAL main.py: **
+    - Helper functions for backward compatibility (fetch_ninjaone_data, fetch_autotask_data, generate_final_output)
+    - These are used by PDF report generator if it exists
+    - These will remain until PDF generator is migrated
+
+** BREAKING CHANGES: **
+    ✓ NONE - No other scripts import from security_reporting_system/src/main.py
+    ✓ All functionality preserved in new CLI tool
+    ✓ Old commands will still work until old directory is removed
+
+================================================================================
+
+
+PHASE 14: MOVE MAIN APP & RUN SCRIPT
+-------------------------------------
+[✓ ] 14.1 Move FastAPI main.py
+         Command: git mv msp_endpoints/main.py app/
+
+[✓  ] 14.2 Update run.py
+         Action: Change "from main import app" to "from app.main import app"
+
+[ ✓ ] 14.3 Commit main app files
+         Command: git add run.py
+                  git commit -m "refactor: move FastAPI app to app/main.py, update run.py"
+                  git push
+
+
+PHASE 16: UPDATE IMPORTS - CLIENT MODULES
+------------------------------------------
+[ ✓] 16.1 Update app/clients/ninjaone_client.py imports
+         OLD: from security_reporting_system.config.config import config_manager
+         NEW: from app.core.config.settings import config_manager
+
+[✓ ] 16.2 Update app/clients/autotask_client.py imports
+         (Same pattern as above)
+
+[ ✓] 16.3 Update app/clients/bitdefender_client.py imports
+         (Same pattern)
+
+[✓ ] 16.4 Update app/clients/connectsecure_client.py imports
+         (Same pattern)
+
+[ ✓] 16.5 Update app/clients/cove_client.py imports
+         OLD: from security_reporting_system.src.services.encryption_manager import EncryptionManager
+         NEW: from app.services.encryption.manager import EncryptionManager
+
+[ ✓] 16.6 Commit client import updates
+         Command: git add app/clients/
+                  git commit -m "refactor: update imports in client modules"
+                  git push
+
+
+PHASE 17: UPDATE IMPORTS - PROCESSOR MODULES
+---------------------------------------------
+[✓ ] 17.1 Update app/processors/ninjaone_processor.py
+         OLD: from security_reporting_system.src.clients.api_client import NinjaOneAPIClient
+         NEW: from app.clients.api_client import NinjaOneAPIClient
+
+[✓ ] 17.2 Update app/processors/autotask_processor.py
+         OLD: from security_reporting_system.src.clients.autotask_client import ...
+         NEW: from app.clients.autotask_client import ...
+
+[✓ ] 17.3 Update app/processors/bitdefender_processor.py
+         OLD: from security_reporting_system.src.services.encryption_manager import EncryptionManager
+         NEW: from app.services.encryption.manager import EncryptionManager
+
+[ ✓] 17.4 Update app/processors/connectsecure_processor.py
+         (Same pattern)
+
+[✓ ] 17.5 Update app/processors/cove_processor.py
+         OLD: from security_reporting_system.src.clients.cove_client import CoveClient
+              from security_reporting_system.src.services.encryption_manager import EncryptionManager
+         NEW: from app.clients.cove_client import CoveClient
+              from app.services.encryption.manager import EncryptionManager
+
+[✓ ] 17.6 Commit processor import updates
+         Command: git add app/processors/
+                  git commit -m "refactor: update imports in processor modules"
+                  git push
+
+
+PHASE 18: UPDATE IMPORTS - ROUTE MODULES
+-----------------------------------------
+[ ] 18.1 Update app/routes/admin/clients.py
+         OLD: from crypto_utils import encrypt_client_secret, decrypt_client_secret
+         NEW: from app.services.encryption.manager import encrypt_client_secret, decrypt_client_secret
+
+[ ] 18.2 Update app/routes/admin/licenses.py
+         (Update any config imports)
+
+[ ] 18.3 Update app/routes/clients/charts.py
+         OLD: from security_reporting_system.src.services.encryption_manager import EncryptionManager
+         NEW: from app.services.encryption.manager import EncryptionManager
+
+[ ] 18.4 Update app/routes/clients/users.py
+         (Update imports)
+
+[ ] 18.5 Update app/routes/compliance/status.py
+         (Update imports)
+
+[ ] 18.6 Update app/routes/compliance/status_post.py
+         (Update imports)
+
+[ ] 18.7 Update app/routes/security/cache_test.py
+         (Update imports)
+
+[ ] 18.8 Update app/routes/security/issues.py
+         (Update imports)
+
+[ ] 18.9 Update app/routes/security/mfa.py
+         (Update imports)
+
+[ ] 18.10 Update app/routes/security/months.py
+          (Update imports)
+
+[ ] 18.11 Update app/routes/security/reports.py
+          OLD: from security_reporting_system.src.services.encryption_manager import EncryptionManager
+          NEW: from app.services.encryption.manager import EncryptionManager
+
+[ ] 18.12 Update app/routes/security/secure_score.py
+          (Update imports)
+
+[ ] 18.13 Commit route import updates
+          Command: git add app/routes/
+                   git commit -m "refactor: update imports in route modules"
+                   git push
+
+
+PHASE 19: UPDATE IMPORTS - SERVICE MODULES
+-------------------------------------------
+[ ] 19.1 Update app/services/cache/cache_services.py
+         (Update any config imports)
+
+[ ] 19.2 Update app/services/cache/cache_write_services.py
+         (Update imports)
+
+[ ] 19.3 Update app/services/compliance/fix_functions.py
+         (Update imports)
+
+[ ] 19.4 Update app/services/integrations/orchestrator.py
+         OLD: from security_reporting_system.src.processors.ninjaone_processor import NinjaOneProcessor
+              from security_reporting_system.src.processors.autotask_processor import AutotaskProcessor
+              ...
+         NEW: from app.processors.ninjaone_processor import NinjaOneProcessor
+              from app.processors.autotask_processor import AutotaskProcessor
+              ...
+
+[ ] 19.5 Update app/services/integrations/wrappers.py
+         (Update imports)
+
+[ ] 19.6 Update app/services/organizations/service.py
+         (Update imports to config)
+
+[ ] 19.7 Update app/services/organizations/sync.py
+         (Update imports)
+
+[ ] 19.8 Update app/services/organizations/matcher.py
+         (Update imports)
+
+[ ] 19.9 Commit service import updates
+         Command: git add app/services/
+                  git commit -m "refactor: update imports in service modules"
+                  git push
+
+
+PHASE 20: UPDATE IMPORTS - CORE MODULES
+----------------------------------------
+[ ] 20.1 Update app/core/auth/dependencies.py
+         (Update imports)
+
+[ ] 20.2 Update app/core/auth/middleware.py
+         OLD: from crypto_utils import CryptoManager
+         NEW: from app.services.encryption.manager import encryption_manager as crypto_manager
+
+[ ] 20.3 Update app/core/auth/utils.py
+         (Update imports)
+
+[ ] 20.4 Update app/core/config/settings.py
+         (Already merged - verify imports)
+
+[ ] 20.5 Update app/core/config/supabase.py
+         OLD: from security_reporting_system.src.services.encryption_manager import EncryptionManager
+         NEW: from app.services.encryption.manager import EncryptionManager
+
+[ ] 20.6 Update app/core/database/supabase_services.py
+         OLD: from msp_endpoints.crypto_utils import encrypt_client_secret, decrypt_client_secret
+         NEW: from app.services.encryption.manager import encrypt_client_secret, decrypt_client_secret
+
+[ ] 20.7 Commit core import updates
+         Command: git add app/core/
+                  git commit -m "refactor: update imports in core modules"
+                  git push
+
+
+PHASE 21: UPDATE IMPORTS - UTILS MODULES
+-----------------------------------------
+[ ] 21.1 Update app/utils/common.py
+         (Update any config imports)
+
+[ ] 21.2 Update app/utils/debug.py
+         (Update imports)
+
+[ ] 21.3 Update app/utils/frontend_transformer.py
+         OLD: from security_reporting_system.config.supabase_client import SupabaseCredentialManager
+         NEW: from app.core.config.supabase import SupabaseCredentialManager
+
+[ ] 21.4 Update app/utils/month_selector.py
+         (Update imports)
+
+[ ] 21.5 Commit utils import updates
+         Command: git add app/utils/
+                  git commit -m "refactor: update imports in utility modules"
+                  git push
+
+
+PHASE 22: UPDATE APP/MAIN.PY ROUTE IMPORTS
+-------------------------------------------
+[ ] 22.1 Update route imports in app/main.py
+         OLD: from endpoints.security_issues import router as security_router
+              from endpoints.mfa_status import router as mfa_router
+              from endpoints.license_management import router as license_router
+              ...
+
+         NEW: from app.routes.security.issues import router as security_router
+              from app.routes.security.mfa import router as mfa_router
+              from app.routes.admin.licenses import router as license_router
+              from app.routes.admin.clients import router as client_router
+              from app.routes.clients.users import router as user_router
+              from app.routes.clients.charts import router as integration_platform_router
+              from app.routes.compliance.status import router as all_router
+              from app.routes.compliance.status_post import router as post_router
+              from app.routes.security.cache_test import router as cache_test_router
+              from app.routes.security.secure_score import router as secure_router
+              from app.routes.security.reports import router as report_router
+              from app.routes.security.months import router as months_router
+
+[ ] 22.2 Commit main.py updates
+         Command: git add app/main.py
+                  git commit -m "refactor: update route imports in app/main.py"
+                  git push
+
+
+PHASE 23: UPDATE TEST FILES
+----------------------------
+[ ] 23.1 Update tests/test_api.py imports
+         (Update to new import paths)
+
+[ ] 23.2 Update tests/test_organizations.py imports
+         OLD: from security_reporting_system.src.services.organization_sync import OrganizationSyncService
+              from security_reporting_system.src.services.organization_service import OrganizationMappingService
+         NEW: from app.services.organizations.sync import OrganizationSyncService
+              from app.services.organizations.service import OrganizationMappingService
+
+[ ] 23.3 Commit test import updates
+         Command: git add tests/
+                  git commit -m "test: update imports in test files"
+                  git push
+
+
+PHASE 24: CLEANUP OLD DIRECTORIES
+----------------------------------
+[ ] 24.1 Remove old msp_endpoints/ directory
+         Command: git rm -r msp_endpoints/
+                  git commit -m "chore: remove old msp_endpoints directory"
+                  git push
+
+[ ] 24.2 Remove old security_reporting_system/ directory
+         Command: git rm -r security_reporting_system/
+                  git commit -m "chore: remove old security_reporting_system directory"
+                  git push
+
+
+PHASE 25: CREATE/UPDATE DOCUMENTATION
+--------------------------------------
+[ ] 25.1 Create project README.md
+         Action: Document new structure, setup instructions, usage
+
+[ ] 25.2 Create pyproject.toml
+         Action: Modern Python packaging configuration
+
+[ ] 25.3 Commit documentation
+         Command: git add README.md pyproject.toml
+                  git commit -m "docs: add project documentation and packaging config"
+                  git push
+
+
+PHASE 26: TESTING
+------------------
+[ ] 26.1 Test FastAPI server starts
+         Command: python run.py
+         Expected: Server starts without import errors
+
+[ ] 26.2 Test API endpoints
+         Action: Visit http://127.0.0.1:9000/docs
+                 Test each endpoint manually
+
+[ ] 26.3 Test data collection flows
+         Action: Run a test report generation
+
+[ ] 26.4 Test encryption/decryption
+         Action: Verify both old and new import patterns work
+
+[ ] 26.5 Run pytest (if tests exist)
+         Command: pytest tests/
+
+[ ] 26.6 Fix any errors found
+         Action: Create commits for each fix
+
+
+PHASE 27: FINAL REVIEW & MERGE
+-------------------------------
+[ ] 27.1 Review all changes
+         Command: git log --oneline --graph
+
+[ ] 27.2 Create Pull Request on GitHub
+         Title: "Restructure: Merge msp_endpoints and security_reporting_system"
+         Description: (use summary from this file)
+
+[ ] 27.3 Code review
+         Action: Wait for team review and approval
+
+[ ] 27.4 Merge to dev branch
+         Command: (via GitHub UI or git merge)
+
+[ ] 27.5 Delete restructure branch
+         Command: git branch -d restructure
+                  git push origin --delete restructure
+
+[ ] 27.6 Update local dev branch
+         Command: git checkout dev
+                  git pull origin dev
+
+
+================================================================================
+                        8. IMPORT UPDATES REQUIRED
+================================================================================
+
+DETAILED IMPORT CHANGES BY FILE:
+
+FILE: app/clients/api_client.py
+---
+OLD: from security_reporting_system.config.config import config_manager
+NEW: from app.core.config.settings import config_manager
+
+FILE: app/clients/autotask_client.py
+---
+OLD: from security_reporting_system.config.config import config_manager
+NEW: from app.core.config.settings import config_manager
+
+FILE: app/clients/bitdefender_client.py
+---
+OLD: from security_reporting_system.config.config import config_manager
+NEW: from app.core.config.settings import config_manager
+
+FILE: app/clients/connectsecure_client.py
+---
+OLD: from security_reporting_system.config.config import config_manager
+NEW: from app.core.config.settings import config_manager
+
+FILE: app/clients/cove_client.py
+---
+OLD: from security_reporting_system.src.services.encryption_manager import EncryptionManager
+NEW: from app.services.encryption.manager import EncryptionManager
+
+FILE: app/processors/ninjaone_processor.py
+---
+OLD: from security_reporting_system.src.clients.api_client import NinjaOneAPIClient
+NEW: from app.clients.api_client import NinjaOneAPIClient
+
+FILE: app/processors/autotask_processor.py
+---
+OLD: from security_reporting_system.src.clients.autotask_client import AutotaskClient
+NEW: from app.clients.autotask_client import AutotaskClient
+
+FILE: app/processors/bitdefender_processor.py
+---
+OLD: from security_reporting_system.src.services.encryption_manager import EncryptionManager
+     from security_reporting_system.src.clients.bitdefender_client import BitdefenderClient
+NEW: from app.services.encryption.manager import EncryptionManager
+     from app.clients.bitdefender_client import BitdefenderClient
+
+FILE: app/processors/connectsecure_processor.py
+---
+OLD: from security_reporting_system.src.clients.connectsecure_client import ConnectSecureClient
+NEW: from app.clients.connectsecure_client import ConnectSecureClient
+
+FILE: app/processors/cove_processor.py
+---
+OLD: from security_reporting_system.src.clients.cove_client import CoveClient
+     from security_reporting_system.src.services.encryption_manager import EncryptionManager
+NEW: from app.clients.cove_client import CoveClient
+     from app.services.encryption.manager import EncryptionManager
+
+FILE: app/routes/admin/clients.py
+---
+OLD: from crypto_utils import encrypt_client_secret, decrypt_client_secret
+NEW: from app.services.encryption.manager import encrypt_client_secret, decrypt_client_secret
+
+FILE: app/routes/clients/charts.py
+---
+OLD: from security_reporting_system.src.services.encryption_manager import EncryptionManager
+NEW: from app.services.encryption.manager import EncryptionManager
+
+FILE: app/routes/security/reports.py
+---
+OLD: from security_reporting_system.src.services.encryption_manager import EncryptionManager
+NEW: from app.services.encryption.manager import EncryptionManager
+
+FILE: app/services/integrations/orchestrator.py
+---
+OLD: from security_reporting_system.src.processors.ninjaone_processor import NinjaOneProcessor
+     from security_reporting_system.src.processors.autotask_processor import AutotaskProcessor
+     from security_reporting_system.src.processors.connectsecure_processor import ConnectSecureProcessor
+     from security_reporting_system.src.processors.bitdefender_processor import BitdefenderProcessor
+     from security_reporting_system.src.processors.cove_processor import CoveProcessor
+NEW: from app.processors.ninjaone_processor import NinjaOneProcessor
+     from app.processors.autotask_processor import AutotaskProcessor
+     from app.processors.connectsecure_processor import ConnectSecureProcessor
+     from app.processors.bitdefender_processor import BitdefenderProcessor
+     from app.processors.cove_processor import CoveProcessor
+
+FILE: app/core/auth/middleware.py
+---
+OLD: from crypto_utils import CryptoManager
+NEW: from app.services.encryption.manager import encryption_manager as crypto_manager
+
+FILE: app/core/config/supabase.py
+---
+OLD: from security_reporting_system.src.services.encryption_manager import EncryptionManager
+NEW: from app.services.encryption.manager import EncryptionManager
+
+FILE: app/core/database/supabase_services.py
+---
+OLD: from msp_endpoints.crypto_utils import encrypt_client_secret, decrypt_client_secret
+NEW: from app.services.encryption.manager import encrypt_client_secret, decrypt_client_secret
+
+FILE: app/utils/frontend_transformer.py
+---
+OLD: from security_reporting_system.config.supabase_client import SupabaseCredentialManager
+NEW: from app.core.config.supabase import SupabaseCredentialManager
+
+FILE: app/main.py
+---
+OLD: from endpoints.security_issues import router as security_router
+     from endpoints.mfa_status import router as mfa_router
+     from endpoints.license_management import router as license_router
+     from endpoints.user_details import router as user_router
+     from endpoints.microsoft_secure_score import router as secure_router
+     from endpoints.all_complaince_status import router as all_router
+     from endpoints.complaince_status_post_endpoints import router as post_router
+     from endpoints.client_management import router as client_router
+     from endpoints.report_endpoint import router as report_router
+     from endpoints.cache_test_endpoints import router as cache_test_router
+     from endpoints.integration_platform_charts_endpoints import router as integration_platform_router
+
+NEW: from app.routes.security.issues import router as security_router
+     from app.routes.security.mfa import router as mfa_router
+     from app.routes.admin.licenses import router as license_router
+     from app.routes.clients.users import router as user_router
+     from app.routes.security.secure_score import router as secure_router
+     from app.routes.compliance.status import router as all_router
+     from app.routes.compliance.status_post import router as post_router
+     from app.routes.admin.clients import router as client_router
+     from app.routes.security.reports import router as report_router
+     from app.routes.security.cache_test import router as cache_test_router
+     from app.routes.clients.charts import router as integration_platform_router
+
+FILE: run.py
+---
+OLD: from main import app
+NEW: from app.main import app
+
+FILE: tests/test_organizations.py
+---
+OLD: from security_reporting_system.src.services.organization_sync import OrganizationSyncService
+     from security_reporting_system.src.services.organization_service import OrganizationMappingService
+NEW: from app.services.organizations.sync import OrganizationSyncService
+     from app.services.organizations.service import OrganizationMappingService
+
+
+TOTAL FILES WITH IMPORT CHANGES: ~50 files
+
+================================================================================
+                        9. TESTING CHECKLIST
+================================================================================
+
+MANUAL TESTING:
+[ ] FastAPI server starts without errors
+[ ] /docs endpoint loads (Swagger UI)
+[ ] Authentication works
+[ ] All admin routes respond
+[ ] All client routes respond
+[ ] All compliance routes respond
+[ ] All security routes respond
+[ ] Data collection works for NinjaOne
+[ ] Data collection works for Autotask
+[ ] Data collection works for ConnectSecure
+[ ] Data collection works for Bitdefender
+[ ] Data collection works for Cove
+[ ] Encryption/decryption works
+[ ] Database connections work
+[ ] Cache services work
+[ ] Report generation works
+[ ] Frontend JSON transformation works
+
+AUTOMATED TESTING:
+[ ] pytest runs without errors
+[ ] All unit tests pass
+[ ] Integration tests pass (if exist)
+
+VERIFICATION:
+[ ] No __pycache__ in git
+[ ] No .pyc files in git
+[ ] .gitignore properly excludes local files
+[ ] All production code in repo
+[ ] No credentials in repo
+[ ] Documentation is complete
+
+================================================================================
+                            10. ROLLBACK PLAN
+================================================================================
+
+IF MIGRATION FAILS:
+
+OPTION 1: Revert specific commits
+---
+Command: git log --oneline
+         git revert <commit-hash>
+
+OPTION 2: Reset to before migration
+---
+Command: git reset --hard <commit-before-migration>
+         git push --force origin restructure
+
+OPTION 3: Delete branch and start over
+---
+Command: git checkout dev
+         git branch -D restructure
+         git checkout -b restructure
+         (start migration again)
+
+OPTION 4: Abandon restructure branch
+---
+Command: git checkout dev
+         git branch -D restructure
+         (keep current structure)
+
+================================================================================
+                            MIGRATION COMPLETE
+================================================================================
+
+When all checkboxes are checked:
+✅ All files moved
+✅ All imports updated
+✅ All tests passing
+✅ Documentation complete
+✅ Pull Request created and approved
+✅ Merged to dev
+
+NEXT STEPS:
+1. Monitor production for any issues
+2. Update deployment scripts if needed
+3. Communicate changes to team
+4. Archive this migration plan for reference
+
+================================================================================
+                                END OF PLAN
+================================================================================
+1) updated imports in /clients
+2) updated imports in /processors
+3) updated imports and scripts in routes/admin
+4) updated imports in routes/clients
+5) updated imports in routes/compliance
+6) updated imports in routes/security
+7) updated imports in utils
+8) updated /core scripts imports
+9) updated imports changes in /management
+10) updated changes in /schemas
+11) updated import changes in /services cache,compliance and encryption
+12)updated import changes in /services/integrations
+13)updated import changes in /services/organizations
+14)updated import changes in app/main.py
+
+
